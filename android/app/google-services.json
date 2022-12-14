@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "754736901861",
+    "project_id": "aaaa-ceef1",
+    "storage_bucket": "aaaa-ceef1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:754736901861:android:b5d9cca564a59ec94cae0c",
+        "android_client_info": {
+          "package_name": "com.example.cafe_app_project"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "754736901861-rkpmabu2ts6iie3jchk0lsak0nfpqv3r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAq1VevLJX2wLlZESUmxYtz58ZiFlHqMac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "754736901861-rkpmabu2ts6iie3jchk0lsak0nfpqv3r.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "754736901861-kga90h8jhjd2fk6lsd86ghe384a4dl6o.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.google.imageFireBase"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
