@@ -1,6 +1,7 @@
 
 
 import 'package:cafe_app_project/view/screens/favorite_screen.dart';
+import 'package:cafe_app_project/view/screens/user/favourites/prodects_favourites.dart';
 
 
 import 'package:get/get.dart';
@@ -17,16 +18,14 @@ class MainController  extends GetxController{
   RxInt currentIndex = 0.obs;
   final tabs = [
     HomeScreen(),
-    Favorite_Screen(),
-
+    FavoritesScreen(),
     ProfileScreen(),
   ].obs;
 
 
   final title = [
     "Brown Star",
-
-    "favourites",
+   "favourites",
     "profile"
   ].obs;
 

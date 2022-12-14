@@ -1,8 +1,22 @@
 
 
 
-import 'dart:io';
+// import 'dart:io';
+// import 'package:cafe_app_project/model/product.dart';
+// import 'package:cafe_app_project/routes/routs.dart';
+// import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:firebase_storage/firebase_storage.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import 'package:get_storage/get_storage.dart';
+// import 'package:image_picker/image_picker.dart';
+//
+//
 
+  import 'dart:io';
+
+import 'package:cafe_app_project/model/product.dart';
+import 'package:cafe_app_project/routes/routs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -10,11 +24,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../model/product.dart';
-import '../../routes/routs.dart';
-
-
-  class ProdectController extends GetxController {
+class ProdectController extends GetxController {
 
   var isLoading = true.obs;
   var stoarge = GetStorage();

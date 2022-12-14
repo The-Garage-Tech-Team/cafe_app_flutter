@@ -23,8 +23,6 @@ import '../view/screens/setting/settings_screen.dart';
 import '../view/screens/welcome_screen.dart';
 
 class AppRoutes{
-
-
 //  initialRoute
   static const welcome = Routes.welcomeScreen ;
   static const sigup = Routes.signupScreen ;
@@ -75,7 +73,7 @@ class AppRoutes{
     GetPage(
         name: Routes.main_Screen,
         page: () => MainScreen(),
-      bindings: [AuthBinding(),MainBindng(),
+      bindings: [AuthBinding(),MainBindng(),ProductBinding(),
         ],
     ),
 
