@@ -5,7 +5,7 @@ import 'modelMenu_item.dart';
 
 class MenuItems {
   static const List<MenuItemPoup> menuItems = [
-    itemUpdate,
+  
     itemDelete,
   ];
 

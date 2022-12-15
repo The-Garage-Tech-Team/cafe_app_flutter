@@ -117,7 +117,7 @@ class CardItem extends StatelessWidget {
                        // controller.manageFavourites(productId);
                         controller.addProdectFav(productModels );
                       },
-                      icon: controller.isFave(productId)
+                      icon: controller.isFave(productName)
                           ? const Icon(
                         Icons.favorite,
                         color: Colors.red,

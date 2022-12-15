@@ -56,6 +56,8 @@ SizedBox(height: 30,),
                       imageUrl: e['imageUrl']))
                   .toList();
               print('leeength ${controller.prodects.length}');
+
+              print('leeength ${controller.imgUrl}');
               if (controller.prodects.isNotEmpty) {
                 return CardItem();
               } else {

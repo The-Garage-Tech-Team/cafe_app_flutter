@@ -234,20 +234,37 @@ final authController = Get.put(AuthController());
 
 //
   bool isFave(String productId) {
+    print ("------$productId");
   return favouritesList
-      .any((element) => element.productNumber== productId);}
+      .any((element) => element.productName== productId);
+
+
+
+
+  }
 
 
   Future<void> addProdectFav(Prodect prodect) async {
 
- var ref = prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(prodect.productName);
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("productImage")
+        .child(productNameControlller.text + ".jpg");
+    if (pickedFile == null) {
+    } else {
+      await ref.putFile(pickedFile!);
+      imgUrl = await ref.getDownloadURL();
+    }
+
+
+    var refa = prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(prodect.productName);
 
     prodect.productNumber = prodectRef.id;
     prodect.imageUrl = imgUrl.toString();
 
 
     final data = prodect.toJson(); // insert to fiserbase
-    ref.set(data).whenComplete(() {
+    refa.set(data).whenComplete(() {
       clearController();
       Get.snackbar("", "Added successfully..");
 if(prodect.productName == prodectRef.id){
@@ -263,10 +280,14 @@ if(prodect.productName == prodectRef.id){
 
       Get.snackbar("Error", "something went wrong");
     });
-
-
   }
 
+
+   Future<void> deleteDataFav(String nameId) async {
+    await  prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(nameId).delete();
+
+
+   }
 
 
   Future<void> addProdectCart(Prodect prodect) async {
@@ -289,5 +310,8 @@ if(prodect.productName == prodectRef.id){
 
 
   }
+
+
+
 
   }

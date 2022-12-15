@@ -3,6 +3,7 @@ import 'package:cafe_app_project/View/widgets/textUtils.dart';
 import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
 import 'package:cafe_app_project/model/UserImages.dart';
 import 'package:cafe_app_project/utils/theme.dart';
+import 'package:cafe_app_project/view/screens/setting/uploadImage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -127,15 +128,32 @@ class ProfileScreen extends StatelessWidget {
                       SettingsWidget(),
                       SizedBox(height: 2),
                      Row(
-                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       mainAxisAlignment: MainAxisAlignment.center,
                        children: [
-                         IconButton(onPressed: (){
-                           controllerImages.chooseImage();
-                         }, icon: Icon(Icons.add_a_photo ,color: buttonColor,),),
+
+
+                         ElevatedButton(
+                             style: ElevatedButton.styleFrom(
+                                 primary: buttonColor,
+                                 shape: RoundedRectangleBorder(
+                                   borderRadius: BorderRadius.circular(10),
+                                 ),
+                                 padding: const EdgeInsets.symmetric(
+                                     horizontal: 30, vertical: 7)),
+                             onPressed: () {
+                               Get.to(UplodImageProfile());
+                               // Get.toNamed(Routes.loginScreen);
+
+
+                             },
+                             child: TextUtils(
+                               text: 'Select Image',
+                               fointSize: 22,
+                               fontWeight: FontWeight.bold,
+                               color: Colors.white, underLine: TextDecoration.none,
+                             )),
                          // SizedBox(width: 100,),
-                         ElevatedButton( onPressed: () {
-                           controllerImages.addProdect(UserImages(imageUrl: controllerImages.image !));
-                         }, child: Text("Save Image?"),),
+
                        ],
                      ),
 
