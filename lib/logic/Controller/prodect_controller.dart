@@ -245,24 +245,12 @@ final authController = Get.put(AuthController());
 
 
   Future<void> addProdectFav(Prodect prodect) async {
-
     final ref = FirebaseStorage.instance
         .ref()
         .child("productImage")
         .child(productNameControlller.text + ".jpg");
-    if (pickedFile == null) {
-    } else {
-      await ref.putFile(pickedFile!);
-      imgUrl = await ref.getDownloadURL();
-    }
-
-
     var refa = prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(prodect.productName);
-
     prodect.productNumber = prodectRef.id;
-    prodect.imageUrl = imgUrl.toString();
-
-
     final data = prodect.toJson(); // insert to fiserbase
     refa.set(data).whenComplete(() {
       clearController();

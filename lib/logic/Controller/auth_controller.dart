@@ -126,7 +126,7 @@ class AuthController extends GetxController
       update();
 
       // Get.offNamed(Routes.tabel_number);
-      if (displayUserEmail.value == "d@gmail.com"){
+      if (displayUserEmail.value == "na@n.com"){
         Get.offNamed(Routes.stockScreen);
       }
       else{

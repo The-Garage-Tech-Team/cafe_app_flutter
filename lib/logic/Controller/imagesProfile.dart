@@ -113,6 +113,11 @@ var counter = 0;
 
   }
 
+  Future<void> deleteDataImages(var id) async {
+    await  FirebaseFirestore.instance.collection('users').doc(authController.displayUserEmail.value).collection("Favorite").doc(id).delete();
+
+
+  }
 }
 
 

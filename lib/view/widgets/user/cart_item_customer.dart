@@ -115,6 +115,7 @@ class CardItem extends StatelessWidget {
                       onPressed: () {
 
                        // controller.manageFavourites(productId);
+
                         controller.addProdectFav(productModels );
                       },
                       icon: controller.isFave(productName)

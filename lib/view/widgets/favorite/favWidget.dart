@@ -1,9 +1,10 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
-import '../../View/widgets/admin/popupMenu/popup_menu.dart';
-import '../../logic/Controller/prodect_controller.dart';
+import '../../../View/widgets/admin/popupMenu/popup_menu.dart';
+import '../../../logic/Controller/prodect_controller.dart';
 
 class FavoriteInStock extends StatelessWidget {
   List<dynamic> prodect;
@@ -43,29 +44,22 @@ class FavoriteInStock extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded(
-                        child: Row(
-                          children: [
-                            Text(
-                              "${prodect[index].productNumber}",
-                              style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700),
-                            ),
-                            Spacer(),
-                            PopupMenu(
-                              prodectId: '${prodect[index].productNumber}',
-                              productName: '${prodect[index].productName}',
-                              category: '${prodect[index].category}',
-                              quantity: '${prodect[index].quantity}',
-                              price: '${prodect[index].price}',
-                              description: '${prodect[index].description}',
-                              imageUrl: '${prodect[index].imageUrl}',
-                            ),
-                          ],
-                        ),
-                      ),
+                      // Expanded(
+                      //   child: Row(
+                      //     children: [
+                      //       Text(
+                      //         "${prodect[index].productNumber}",
+                      //         style: TextStyle(
+                      //             overflow: TextOverflow.ellipsis,
+                      //             fontSize: 12,
+                      //             fontWeight: FontWeight.w700),
+                      //       ),
+                      //
+                      //
+                      //
+                      //     ],
+                      //   ),
+                      // ),
                       SizedBox(
                         height: 3,
                       ),
@@ -79,12 +73,21 @@ class FavoriteInStock extends StatelessWidget {
                       SizedBox(
                         height: 3,
                       ),
-                      Text(
-                        "${prodect[index].category}",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(0, 0, 0, 1)),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "${prodect[index].category}",
+                            style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                                color: Color.fromRGBO(0, 0, 0, 1)),
+                          ),
+                          IconButton(onPressed: (){
+                            print("kkkk");
+                            controller.deleteDataFav( '${prodect[index].productName}');
+                          }, icon: Icon(Icons.delete)),
+                        ],
                       ),
                       SizedBox(
                         height: 3,

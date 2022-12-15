@@ -22,34 +22,67 @@ class ImageUserProfile extends StatelessWidget {
     return ListView.builder(
         itemCount: prodect.length,
         itemBuilder: ((context, index) {
-          return Container(
-            margin: EdgeInsets.only(left: 20, right: 20, top: 5),
-            height: 178,
-            width: 393,
-            decoration: BoxDecoration(
-                color: Color.fromRGBO(255, 255, 255, 1),
-                borderRadius: BorderRadius.circular(20)
-            ,
-                image: DecorationImage(
-                    image: NetworkImage('${prodect[index].imageUrl}'),
-                    fit: BoxFit.fill)),
-            // child: Row(
-            //   children: [
-            //     Container(
-            //       height: 156,
-            //       width: 250,
-            //       margin: EdgeInsets.only(left: 15),
-            //       decoration: BoxDecoration(
-            //           color: Colors.white.withOpacity(0.3),
-            //           borderRadius: BorderRadius.circular(4),
-            //           image: DecorationImage(
-            //               image: NetworkImage('${prodect[index].imageUrl}'),
-            //               fit: BoxFit.cover)),
-            //     ),
-            //
-            //
-            //   ],
-            // ),
+          return Expanded(
+            child: Stack(
+              children: [Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(left: 20, right: 20, top: 5),
+                    height: 178,
+                    width: 250,
+                    decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 255, 255, 1),
+                        borderRadius: BorderRadius.circular(20)
+                    ,
+                        image: DecorationImage(
+                            image: NetworkImage(
+
+                                '${prodect[index].imageUrl}'),
+                            fit: BoxFit.fill)),
+
+
+                 // Spacer(),
+                 //    PopupMenu(
+                 //      prodectId: '${prodect[index].productNumber}',
+                 //      productName: '${prodect[index].productName}',
+                 //      category: '${prodect[index].category}',
+                 //      quantity: '${prodect[index].quantity}',
+                 //      price: '${prodect[index].price}',
+                 //      description: '${prodect[index].description}',
+                 //      imageUrl: '${prodect[index].imageUrl}',
+                 //    ),
+
+
+
+
+                    // child: Row(
+                    //   children: [
+                    //     Container(
+                    //       height: 156,
+                    //       width: 250,
+                    //       margin: EdgeInsets.only(left: 15),
+                    //       decoration: BoxDecoration(
+                    //           color: Colors.white.withOpacity(0.3),
+                    //           borderRadius: BorderRadius.circular(4),
+                    //           image: DecorationImage(
+                    //               image: NetworkImage('${prodect[index].imageUrl}'),
+                    //               fit: BoxFit.cover)),
+                    //     ),
+                    //
+                    //
+                    //   ],
+                    // ),
+                  ),
+
+             // IconButton(onPressed: (){
+             //
+             //   // controller.deleteDataImages(con);
+             //
+             // }, icon: Icon(Icons.delete))
+          ],
+              ),
+              ]
+            ),
           );
         }
         )

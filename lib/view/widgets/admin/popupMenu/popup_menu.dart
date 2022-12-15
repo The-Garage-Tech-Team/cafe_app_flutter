@@ -56,10 +56,25 @@ class PopupMenu extends StatelessWidget {
 
   void onSelected(BuildContext context, MenuItemPoup item) {
     switch (item) {
-
-
+      case MenuItems.itemUpdate:
+        controller.productNameControlller.text = productName;
+        controller.productCategoryController.text = category;
+        controller.productQuantityController.text = quantity;
+        controller.productPriceController.text = price;
+        controller.productDescriptionController.text = description;
+        controller.imgUrl = imageUrl;
+        Get.to(EditProductScreen(
+          prodectId: prodectId,
+          productName: productName,
+          category: category,
+          price: price,
+          quantity: quantity,
+          description: description,
+          imageUrl: imageUrl,
+        ));
+        break;
       case MenuItems.itemDelete:
-        controller.deleteDataFav(productName);
+        controller.deleteData(prodectId, productName);
         break;
     }
   }

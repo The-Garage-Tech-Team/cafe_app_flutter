@@ -5,13 +5,20 @@ import 'modelMenu_item.dart';
 
 class MenuItems {
   static const List<MenuItemPoup> menuItems = [
-  
+  itemUpdate,
     itemDelete,
   ];
 
   static const List<MenuItemPoup> menuItemsUser = [
     addToCart,
     seeSimilaritems,
+    itemDelete,
+  ];
+
+
+  static const List<MenuItemPoup> menuItemUser = [
+
+
     itemDelete,
   ];
 

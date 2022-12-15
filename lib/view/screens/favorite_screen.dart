@@ -10,7 +10,7 @@ import 'package:get/get.dart';
 
 
 import '../../model/product.dart';
-import '../widgets/favWidget.dart';
+import '../widgets/favorite/favWidget.dart';
 
 class FavoritesScreen extends StatelessWidget {
   FavoritesScreen({super.key});

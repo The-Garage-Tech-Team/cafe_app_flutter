@@ -185,8 +185,8 @@ height: 200,
                                     prodect : controllerImages.userImages,
                                   );
                                 } else {
-                                  print("empty screen");
-                                  return EmptyScreen();
+
+                                  return Text("If you love art in coffee plesea shara this art");
                                 }
                               } else {
                                 return ImageUserProfile(
