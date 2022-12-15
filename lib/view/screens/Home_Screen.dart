@@ -1,4 +1,5 @@
 import 'package:cafe_app_project/view/widgets/user/search_form_text.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -23,20 +24,40 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(mainAxisAlignment: MainAxisAlignment.start, children: [
-SizedBox(height: 30,),
+SizedBox(height: 5,),
+
+
+        Container(
+
+            child: SearchProducts()
+        ),
+        SizedBox(height: 5,),
         Container(
           height: 100,
           width: 400,
           // padding: EdgeInsets.only(top: 300, left: 15, right: 15, bottom: 15),
-          child :Image.asset(
-            "images/background.jpg",
-            fit: BoxFit.fill,
-          ),
+          child :
+            CarouselSlider(items:controller.imageListSlider.map((e) => ClipRRect(
+              borderRadius: BorderRadius.circular(6),
+              child: Stack(
+                fit: StackFit.expand,
+                children: [
+                  Image.network(e,
+                  height: 200,
+                  width: 100,
+                  fit: BoxFit.cover,)
+                ],
+              ),
+            )).toList() , options: CarouselOptions(
+              autoPlay: true,
+              enableInfiniteScroll: false,
+              enlargeCenterPage: true,
+              height: 150,
+            ),)
+
         ),
         SizedBox(height: 10,),
-        Container(
 
-            child: SearchProducts()),
         SizedBox(
           height: 10,
         ),

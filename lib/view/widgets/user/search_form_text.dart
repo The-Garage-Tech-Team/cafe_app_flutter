@@ -46,10 +46,10 @@ class SearchProducts extends StatelessWidget {
             fontSize: 16,
             fontWeight: FontWeight.w500,
           ),
-          // enabledBorder: OutlineInputBorder(
-          //   borderSide: const BorderSide(color: Colors.grey),
-          //   borderRadius: BorderRadius.circular(10),
-          // ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(color: buttonColor),
+            borderRadius: BorderRadius.circular(10),
+          ),
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(color: buttonColor),
             borderRadius: BorderRadius.circular(10),

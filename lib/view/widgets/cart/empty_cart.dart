@@ -17,10 +17,7 @@ class EmptyCart extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.shopping_cart,
-          size: 150,
-          color: Colors.black26,
-          ),
+
           SizedBox(height: 40,),
           RichText(text: TextSpan(
             children: [
@@ -33,9 +30,9 @@ class EmptyCart extends StatelessWidget {
                 )
               ),
               TextSpan(
-                  text: "Empty",
+                  text: "Empty  🛒",
                   style: TextStyle(
-                    color: mainColor,
+                    color: buttonColor,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   )
@@ -52,7 +49,7 @@ class EmptyCart extends StatelessWidget {
            ),
             elevation: 0
               ,
-            primary: mainColor,
+            primary: buttonColor,
           ),
             onPressed: (){
               Get.toNamed(Routes.main_Screen);

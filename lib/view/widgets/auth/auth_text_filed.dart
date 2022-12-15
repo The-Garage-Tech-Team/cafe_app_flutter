@@ -51,7 +51,7 @@ class AuthTextFromField extends StatelessWidget {
           hintText: hintText,
           hintStyle: TextStyle(
               color: const Color.fromRGBO(153, 162, 165, 0.47),
-              fontSize: 8,
+              fontSize: 14,
               fontWeight: FontWeight.w400),
           filled: true,
           enabledBorder: OutlineInputBorder(

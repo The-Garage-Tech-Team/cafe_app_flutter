@@ -225,7 +225,7 @@ class AuthController extends GetxController
       isSignedIn = false;
       authBox.remove("auth");
       update();
-     Get.offNamed(Routes.main_Screen);
+     Get.offNamed(Routes.welcomeScreen);
     } catch (e) {
       Get.snackbar("Error!", e.toString(),
           snackPosition: SnackPosition.BOTTOM,
@@ -263,7 +263,7 @@ class AuthController extends GetxController
       });
 
       update();
-      Get.offNamed(Routes.tabel_number);
+      Get.offNamed(Routes.loginScreen);
       // getEmailDoc();
     } on FirebaseAuthException catch (e) {
       String title = e.code.replaceAll(RegExp('-'), ' ').capitalize!;

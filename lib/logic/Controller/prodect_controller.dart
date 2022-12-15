@@ -55,6 +55,11 @@ final authController = Get.put(AuthController());
   var productPrice = ''.obs;
   var productDescription = ''.obs;
 
+
+  List <String> imageListSlider =[
+    "https://images.unsplash.com/photo-1540965555-ef9a836372ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTF8MTY2OTc5NXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+  ];
   @override
   Future<void> onInit() async {
   // TODO: implement onInit
@@ -236,7 +241,7 @@ final authController = Get.put(AuthController());
   bool isFave(String productId) {
     print ("------$productId");
   return favouritesList
-      .any((element) => element.productName== productId);
+      .any((element) => element.productName == productId);
 
 
 

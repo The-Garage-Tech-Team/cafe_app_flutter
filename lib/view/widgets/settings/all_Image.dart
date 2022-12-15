@@ -19,73 +19,71 @@ class ImageUserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-        itemCount: prodect.length,
-        itemBuilder: ((context, index) {
-          return Expanded(
-            child: Stack(
-              children: [Row(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(left: 20, right: 20, top: 5),
-                    height: 178,
-                    width: 250,
-                    decoration: BoxDecoration(
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        borderRadius: BorderRadius.circular(20)
-                    ,
-                        image: DecorationImage(
-                            image: NetworkImage(
-
-                                '${prodect[index].imageUrl}'),
-                            fit: BoxFit.fill)),
-
-
-                 // Spacer(),
-                 //    PopupMenu(
-                 //      prodectId: '${prodect[index].productNumber}',
-                 //      productName: '${prodect[index].productName}',
-                 //      category: '${prodect[index].category}',
-                 //      quantity: '${prodect[index].quantity}',
-                 //      price: '${prodect[index].price}',
-                 //      description: '${prodect[index].description}',
-                 //      imageUrl: '${prodect[index].imageUrl}',
-                 //    ),
-
-
-
-
-                    // child: Row(
-                    //   children: [
-                    //     Container(
-                    //       height: 156,
-                    //       width: 250,
-                    //       margin: EdgeInsets.only(left: 15),
-                    //       decoration: BoxDecoration(
-                    //           color: Colors.white.withOpacity(0.3),
-                    //           borderRadius: BorderRadius.circular(4),
-                    //           image: DecorationImage(
-                    //               image: NetworkImage('${prodect[index].imageUrl}'),
-                    //               fit: BoxFit.cover)),
-                    //     ),
-                    //
-                    //
-                    //   ],
-                    // ),
-                  ),
-
-             // IconButton(onPressed: (){
-             //
-             //   // controller.deleteDataImages(con);
-             //
-             // }, icon: Icon(Icons.delete))
-          ],
-              ),
-              ]
+    return Container(
+      child: GridView.builder( itemCount: prodect.length,
+        gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+          childAspectRatio: 0.7,
+          mainAxisSpacing:5.0,
+          crossAxisSpacing: 1.0,
+          maxCrossAxisExtent:160,
+        ),
+        itemBuilder: (context, index){
+        return Padding(
+          padding: const EdgeInsets.all(5),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.2),
+                  spreadRadius: 3.0,
+                  blurRadius: 5.0,
+                ),
+              ],
             ),
-          );
-        }
-        )
+            child: Column(
+              children: [
+
+                Container(
+                  width: double.infinity,
+                  height: 140,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Image.network(
+                    '${prodect[index].imageUrl}',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
+
+              ],
+            ),
+          ),
+        );
+        },
+      ),
     );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   }
 }

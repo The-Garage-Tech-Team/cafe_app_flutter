@@ -30,17 +30,7 @@ class ProfileScreen extends StatelessWidget {
     print("username ${authController.displayUserName.value}");
     return SafeArea(
       child: Scaffold(
-          appBar: AppBar(
-            backgroundColor: Get.isDarkMode ? Colors.black : Colors.white,
-            centerTitle: true,
-            elevation: 0,
-            automaticallyImplyLeading: false,
-            title: Text(
-              'Profile',
-              style: TextStyle(color: Colors.black),
-            ),
 
-          ),
           body: GetBuilder<AuthController>(builder: (_) {
             return Obx(() => Padding(
                   padding: const EdgeInsets.all(16),
@@ -93,39 +83,13 @@ class ProfileScreen extends StatelessWidget {
                       SizedBox(
                         height: 6,
                       ),
-                      Align(
-                        alignment: Alignment.center,
-                        child: TextUtils(
-                          text: authController.displayUserEmail.value,
-                          color: Colors.black45,
-                          fointSize: 9,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: TextUtils(
-                          fointSize: 14,
-                          fontWeight: FontWeight.bold,
-                          text: "Account",
-                          color: Colors.grey.shade700,
-                        ),
-                      ),
+
+
+
                       SizedBox(
                         height: 25,
                       ),
-                      EditProfile(),
-                      Divider(
-                        color: Colors.grey.shade300,
-                        thickness: 1,
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      SettingsWidget(),
+
                       SizedBox(height: 2),
                      Row(
                        mainAxisAlignment: MainAxisAlignment.center,
@@ -157,42 +121,43 @@ class ProfileScreen extends StatelessWidget {
                        ],
                      ),
 
-                     Container(
-height: 200,
-                       width: 371,
+                     Expanded(
+                       child: Container(
+height: 400,
+                         width: 371,
 
-                       color: Colors.white,
+                         color: Colors.white,
 
-                        child:
-                        // Text("kk")
+                          child:
+                          // Text("kk")
 
-                        StreamBuilder(
-                            stream: FirebaseFirestore.instance.collection('users').doc(authController.displayUserEmail.value).collection("ImagesUserProfile").snapshots(),
+                          StreamBuilder(
+                              stream: FirebaseFirestore.instance.collection('users').doc(authController.displayUserEmail.value).collection("ImagesUserProfile").snapshots(),
 
 
-                            builder: (context, snapshot) {
-                              if (snapshot.hasData) {
-                                print("not empty screen");
-                                controllerImages.userImages = snapshot.data!.docs
-                                    .map((e) => UserImages(
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  print("not empty screen");
+                                  controllerImages.userImages = snapshot.data!.docs
+                                      .map((e) => UserImages(
 
-                                    imageUrl: e['image']))
-                                    .toList();
-                                print("prodects.length   ${controllerImages.userImages.length}");
+                                      imageUrl: e['image']))
+                                      .toList();
+                                  print("prodects.length   ${controllerImages.userImages.length}");
 
-                                if (controllerImages.userImages.isNotEmpty) {
-                                  return ImageUserProfile(
-                                    prodect : controllerImages.userImages,
-                                  );
+                                  if (controllerImages.userImages.isNotEmpty) {
+                                    return ImageUserProfile(
+                                      prodect : controllerImages.userImages,
+                                    );
+                                  } else {
+
+                                    return Text("If you love art in coffee plesea shara this art");
+                                  }
                                 } else {
-
-                                  return Text("If you love art in coffee plesea shara this art");
+                                  return ImageUserProfile(
+                                    prodect: controllerImages.userImages,
+                                  );
                                 }
-                              } else {
-                                return ImageUserProfile(
-                                  prodect: controllerImages.userImages,
-                                );
-                              }
 
 
 
@@ -204,12 +169,13 @@ height: 200,
 
 
 
-                            },
+                              },
 
 
 
-                     ),
-                     // ImagesProfileUser(),
+                       ),
+                       // ImagesProfileUser(),
+                       ),
                      )],
                   ),
                 ));

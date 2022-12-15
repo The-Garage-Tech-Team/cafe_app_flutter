@@ -2,6 +2,7 @@
 
 import 'package:cafe_app_project/logic/Bindings/main_binding.dart';
 import 'package:cafe_app_project/view/screens/main_screen.dart';
+import 'package:cafe_app_project/view/screens/setting/settingBar.dart';
 import 'package:cafe_app_project/view/screens/table_number.dart';
 import 'package:get/get.dart';
 
@@ -40,6 +41,7 @@ class AppRoutes{
   static const edit = Routes.editProfileScreen;
   static const profile = Routes.profileScreen;
   static const setting = Routes.settingsScreen;
+  static const setting_bar = Routes.settingBar;
 //getPages
 
   static final routes =[
@@ -113,6 +115,10 @@ class AppRoutes{
 
     ),
 
+    GetPage(
+        name: Routes.settingBar,
+        page: () => SettingBar()),
+
     //
     //
     // ),
@@ -160,4 +166,5 @@ class Routes {
   static const profileScreen = '/ProfileScreen';
   static const editProfileScreen = '/EditProfileScreen';
   static const settingsScreen = '/SettingScreen';
+  static const settingBar = '/SettingBar';
 }

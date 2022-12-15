@@ -222,17 +222,20 @@ class SignUp_Email_Form extends StatelessWidget {
               },
             ),
           ),
+          SizedBox(
+            height: 10,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextUtils(
                   text: 'Already have account ?',
-                  fointSize: 9,
+                  fointSize: 13,
                   fontWeight: FontWeight.normal,
                   color: mainColor,
                   underLine: TextDecoration.none),
               SizedBox(
-                width: 0.5,
+                width: 5,
               ),
               TextButton(
                 onPressed: () {
@@ -245,7 +248,7 @@ class SignUp_Email_Form extends StatelessWidget {
                     alignment: Alignment.centerLeft),
                 child: TextUtils(
                     text: 'Login',
-                    fointSize: 9,
+                    fointSize: 15,
                     fontWeight: FontWeight.w400,
                     color: buttonColor,
                     underLine: TextDecoration.underline),

@@ -1,7 +1,9 @@
 
 import 'package:cafe_app_project/View/widgets/admin/stock/empty_screen.dart';
+import 'package:cafe_app_project/View/widgets/textUtils.dart';
 import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
 import 'package:cafe_app_project/logic/Controller/prodect_controller.dart';
+import 'package:cafe_app_project/utils/theme.dart';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +47,7 @@ class FavoritesScreen extends StatelessWidget {
                 );
               } else {
                 print("empty screen");
-                return EmptyScreen();
+                return Center(child: TextUtils(text: 'empty Favorite ♡', fointSize: 30, fontWeight: FontWeight.bold,color: buttonColor,));
               }
             } else {
               return FavoriteInStock(

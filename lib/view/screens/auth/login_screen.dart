@@ -30,80 +30,15 @@ class Login_Screen extends StatelessWidget {
         child: Container(
           height: 500,
           width: 500,
-          child: Column(children: [
-      //     TextUtils(
-      //       text: "Login by",
-      //       color: labalColor,
-      //       fontWeight: FontWeight.normal,
-      //       fointSize: 11,
-      //       underLine: TextDecoration.none,
-      //     ),
-      //     SizedBox(
-      //       height: 58,
-      //     ),
-      //     Row(
-      //       mainAxisAlignment: MainAxisAlignment.center,
-      //       children: [
-      //         GetBuilder<AuthController>(builder: (_) {
-      //           return IconWidget(
-      //             conternierColor: conternierColor,
-      //           onPressed: () async {
-      // await  controller.loginUsinggoogle();
-      // showDialog(
-      // context: context,
-      // builder: (context) {
-      // return Center(child: CircularProgressIndicator());
-      //
-      // },
-      //
-      // );
-      //
-      // // Get.toNamed(Routes.customerHome);
-      // },
-      // image: 'assets/images/image 14google.png',
-      // textUtils: "with Google",
-      // );
-      // }),
-      //
-      //         SizedBox(
-      //           width: 5.08,
-      //         ),
-      //         IconWidget(
-      //           conternierColor: Colors.black,
-      //           onPressed: () {},
-      //           image: 'assets/images/image 16Apple.png',
-      //           textUtils: "with Apple",
-      //         ),
-      //       ],
-      //     ),
-      //       SizedBox(
-      //         height: 36,
-      //       ),
-            // TextUtils(
-            //     text: "or",
-            //     color: labalColor,
-            //     fontWeight: FontWeight.normal,
-            //     fointSize: 11,
-            //     underLine: TextDecoration.none,),
+          child: Column(
+              children: [
+
+            TextUtils( text: "LOG IN", fointSize: 15, fontWeight: FontWeight.bold, color: buttonColor,),
+
             SizedBox(
               height: 23,
             ),
-            // Container(
-            //   height: 47,
-              // child: TabBar(
-              //     controller: controller.tabController,
-              //     indicatorColor: Colors.black,
-              //     labelColor: Colors.black,
-              //     unselectedLabelColor: labalColor,
-              //     tabs: [
-              //       Tab(
-              //         child: Text("Email", style: TextStyle(fontSize: 12)),
-              //       ),
-              //       Tab(
-              //           child: Text("Phone number",
-              //               style: TextStyle(fontSize: 12)))
-              //     ]),
-            // ),
+
             Container(
               // height: ,
               child: Expanded(

@@ -78,17 +78,18 @@ class CardItem extends StatelessWidget {
   }
 
   Widget buildCardItems(
-  {
-    required String productName,
-    required String catagory,
-    required String image,
-    required double price,
-    required String productId,
-     required Prodect productModels,
 
-    required Function() onTap,
-  }
- ) {
+      {
+        required String productName,
+        required String catagory,
+        required String image,
+        required double price,
+        required String productId,
+        required Prodect productModels,
+
+        required Function() onTap,
+      }
+      ) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
@@ -107,40 +108,7 @@ class CardItem extends StatelessWidget {
           ),
           child: Column(
             children: [
-              Obx(
-                    () => Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      onPressed: () {
 
-                       // controller.manageFavourites(productId);
-
-                        controller.addProdectFav(productModels );
-                      },
-                      icon: controller.isFave(productName)
-                          ? const Icon(
-                        Icons.favorite,
-                        color: Colors.red,
-                      )
-                          : const Icon(
-                        Icons.favorite_outline,
-                        color: mainColor,
-                      ),
-                    ),
-                    IconButton(
-                      onPressed: () {
-// controller.addProdectCart(productModels);
- cartController.addProductToCart(productModels);
-                      },
-                      icon: const Icon(
-                        Icons.shopping_cart,
-                        color: mainColor,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
               Container(
                 width: double.infinity,
                 height: 140,
@@ -176,6 +144,41 @@ class CardItem extends StatelessWidget {
                       ),
                     ),
 
+                  ],
+                ),
+
+              ),
+              Obx(
+                    () => Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    IconButton(
+                      onPressed: () {
+
+                        // controller.manageFavourites(productId);
+                        print("kkkkkkkk $productName");
+                        controller.addProdectFav(productModels );
+                      },
+                      icon: controller.isFave(productName)
+                          ? const Icon(
+                        Icons.favorite,
+                        color: Colors.red,
+                      )
+                          : const Icon(
+                        Icons.favorite_outline,
+                        color: mainColor,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+// controller.addProdectCart(productModels);
+                        cartController.addProductToCart(productModels);
+                      },
+                      icon: const Icon(
+                        Icons.shopping_cart,
+                        color: mainColor,
+                      ),
+                    ),
                   ],
                 ),
               ),

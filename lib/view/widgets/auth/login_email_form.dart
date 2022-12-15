@@ -32,9 +32,9 @@ class Login_Email_Form extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextUtils(
                 text: 'E-mail',
-                color: labalColor,
+                color: mainColor,
                 fontWeight: FontWeight.w400,
-                fointSize: 11,
+                fointSize: 14,
                 underLine: TextDecoration.none),
           ),
           SizedBox(
@@ -64,9 +64,9 @@ class Login_Email_Form extends StatelessWidget {
             alignment: Alignment.topLeft,
             child: TextUtils(
                 text: 'Password',
-                color: labalColor,
+                color: mainColor,
                 fontWeight: FontWeight.w400,
-                fointSize: 11,
+                fointSize: 14,
                 underLine: TextDecoration.none),
           ),
           SizedBox(
@@ -146,12 +146,12 @@ class Login_Email_Form extends StatelessWidget {
             children: [
               TextUtils(
                   text: 'Don\'t  have account ?',
-                  fointSize: 9,
+                  fointSize: 13,
                   fontWeight: FontWeight.normal,
                   color: mainColor,
                   underLine: TextDecoration.none),
               SizedBox(
-                width: 0.5,
+                width: 5,
               ),
               TextButton(
                 onPressed: () {
@@ -164,7 +164,7 @@ class Login_Email_Form extends StatelessWidget {
                     alignment: Alignment.centerLeft),
                 child: TextUtils(
                     text: 'singup',
-                    fointSize: 9,
+                    fointSize: 15,
                     fontWeight: FontWeight.w400,
                     color: buttonColor,
                     underLine: TextDecoration.underline),

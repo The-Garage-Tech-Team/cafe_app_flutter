@@ -44,22 +44,7 @@ class FavoriteInStock extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Expanded(
-                      //   child: Row(
-                      //     children: [
-                      //       Text(
-                      //         "${prodect[index].productNumber}",
-                      //         style: TextStyle(
-                      //             overflow: TextOverflow.ellipsis,
-                      //             fontSize: 12,
-                      //             fontWeight: FontWeight.w700),
-                      //       ),
-                      //
-                      //
-                      //
-                      //     ],
-                      //   ),
-                      // ),
+
                       SizedBox(
                         height: 3,
                       ),
@@ -84,8 +69,8 @@ class FavoriteInStock extends StatelessWidget {
                                 color: Color.fromRGBO(0, 0, 0, 1)),
                           ),
                           IconButton(onPressed: (){
-                            print("kkkk");
-                            controller.deleteDataFav( '${prodect[index].productName}');
+
+                           controller.deleteDataFav( '${prodect[index].productName}');
                           }, icon: Icon(Icons.delete)),
                         ],
                       ),
