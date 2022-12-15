@@ -1,19 +1,25 @@
 
 import 'package:cafe_app_project/View/widgets/textUtils.dart';
 import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
+import 'package:cafe_app_project/model/UserImages.dart';
+import 'package:cafe_app_project/utils/theme.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 
+import '../../../logic/Controller/imagesProfile.dart';
 import '../../../logic/Controller/setting_controller.dart';
 
+import '../../widgets/admin/stock/empty_screen.dart';
+import '../../widgets/settings/all_Image.dart';
 import '../../widgets/settings/edit_profile.dart';
 
 import '../../widgets/settings/settings.dart';
 
 class ProfileScreen extends StatelessWidget {
   ProfileScreen({Key? key}) : super(key: key);
-
+  final controllerImages = Get.put(ImagesController());
   final controller = Get.put(SettingController());
   final authController = Get.find<AuthController>();
 
@@ -119,7 +125,74 @@ class ProfileScreen extends StatelessWidget {
                         height: 5,
                       ),
                       SettingsWidget(),
-                    ],
+                      SizedBox(height: 2),
+                     Row(
+                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                       children: [
+                         IconButton(onPressed: (){
+                           controllerImages.chooseImage();
+                         }, icon: Icon(Icons.add_a_photo ,color: buttonColor,),),
+                         // SizedBox(width: 100,),
+                         ElevatedButton( onPressed: () {
+                           controllerImages.addProdect(UserImages(imageUrl: controllerImages.image !));
+                         }, child: Text("Save Image?"),),
+                       ],
+                     ),
+
+                     Container(
+height: 200,
+                       width: 371,
+
+                       color: Colors.white,
+
+                        child:
+                        // Text("kk")
+
+                        StreamBuilder(
+                            stream: FirebaseFirestore.instance.collection('users').doc(authController.displayUserEmail.value).collection("ImagesUserProfile").snapshots(),
+
+
+                            builder: (context, snapshot) {
+                              if (snapshot.hasData) {
+                                print("not empty screen");
+                                controllerImages.userImages = snapshot.data!.docs
+                                    .map((e) => UserImages(
+
+                                    imageUrl: e['image']))
+                                    .toList();
+                                print("prodects.length   ${controllerImages.userImages.length}");
+
+                                if (controllerImages.userImages.isNotEmpty) {
+                                  return ImageUserProfile(
+                                    prodect : controllerImages.userImages,
+                                  );
+                                } else {
+                                  print("empty screen");
+                                  return EmptyScreen();
+                                }
+                              } else {
+                                return ImageUserProfile(
+                                  prodect: controllerImages.userImages,
+                                );
+                              }
+
+
+
+
+
+
+
+
+
+
+
+                            },
+
+
+
+                     ),
+                     // ImagesProfileUser(),
+                     )],
                   ),
                 ));
           })),

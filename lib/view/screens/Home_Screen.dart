@@ -16,6 +16,7 @@ import '../widgets/user/cart_item_customer.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
+
   final controller = Get.put(ProdectController());
   @override
   Widget build(BuildContext context) {

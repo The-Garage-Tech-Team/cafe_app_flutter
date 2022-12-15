@@ -1,22 +1,13 @@
 
 
 
-// import 'dart:io';
-// import 'package:cafe_app_project/model/product.dart';
-// import 'package:cafe_app_project/routes/routs.dart';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:firebase_storage/firebase_storage.dart';
-// import 'package:flutter/material.dart';
-// import 'package:get/get.dart';
-// import 'package:get_storage/get_storage.dart';
-// import 'package:image_picker/image_picker.dart';
-//
-//
-
   import 'dart:io';
 
+import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
+import 'package:cafe_app_project/logic/Controller/cart_controller.dart';
 import 'package:cafe_app_project/model/product.dart';
 import 'package:cafe_app_project/routes/routs.dart';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -24,12 +15,13 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
+
 class ProdectController extends GetxController {
 
   var isLoading = true.obs;
   var stoarge = GetStorage();
-
-
+final authController = Get.put(AuthController());
+  final cartController = Get.put(CartController());
   var isCatgeoryLoading = false.obs;
   late TextEditingController
   productNumberController,
@@ -42,7 +34,7 @@ class ProdectController extends GetxController {
 
   TextEditingController searchTextController =TextEditingController();
 
-
+  final prodectRef = FirebaseFirestore.instance.collection('prodects');
 
 
 
@@ -50,7 +42,7 @@ class ProdectController extends GetxController {
   File? pickedFile;
   String imgUrl = "";
   final imagePicker = ImagePicker();
-
+  final prodectRefss = FirebaseFirestore.instance.collection('users');
   final getData = FirebaseFirestore.instance.collection('prodects').snapshots();
 
   List<Prodect> prodects =[];
@@ -200,26 +192,28 @@ class ProdectController extends GetxController {
 
   var favouritesList =<Prodect> [].obs;
   List<dynamic> prodectsFavourites = [];
+  var cartList =<CartModels> [].obs;
 
   void manageFavourites(String productId) async {
-  var existingIndex =
-  favouritesList.indexWhere((element) => element.productNumber == productId);
-
-  if (existingIndex >= 0) {
-  favouritesList.removeAt(existingIndex);
-  await stoarge.remove("isFavouritesList");
-  } else {
-  favouritesList
-      .add(prodects.firstWhere((element) => element.productNumber == productId));
-
-  await stoarge.write("isFavouritesList", favouritesList);
+  // var existingIndex =
+  // favouritesList.indexWhere((element) => element.productNumber == productId);
+  //
+  // if (existingIndex >= 0) {
+  // favouritesList.removeAt(existingIndex);
+  // await stoarge.remove("isFavouritesList");
+  // } else {
+  // favouritesList
+  //     .add(prodects.firstWhere((element) => element.productNumber == productId));
+  //
+  // await stoarge.write("isFavouritesList", favouritesList);
+  // }
+  // }
+  //
+  // bool isFave(String productId) {
+  // return favouritesList
+  //     .any((element) => element.productNumber== productId);
   }
-  }
 
-  bool isFave(String productId) {
-  return favouritesList
-      .any((element) => element.productNumber== productId);
-  }
   void addSearchToList(String searchName) {
   searchName = searchName.toLowerCase();
   searchList.value = prodects.where((search) {
@@ -235,6 +229,65 @@ class ProdectController extends GetxController {
   void clearSearch() {
   searchTextController.clear();
   addSearchToList("");
+  }
+
+
+//
+  bool isFave(String productId) {
+  return favouritesList
+      .any((element) => element.productNumber== productId);}
+
+
+  Future<void> addProdectFav(Prodect prodect) async {
+
+ var ref = prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(prodect.productName);
+
+    prodect.productNumber = prodectRef.id;
+    prodect.imageUrl = imgUrl.toString();
+
+
+    final data = prodect.toJson(); // insert to fiserbase
+    ref.set(data).whenComplete(() {
+      clearController();
+      Get.snackbar("", "Added successfully..");
+if(prodect.productName == prodectRef.id){
+
+  print ("jjj");
+  print(prodect.productNumber);
+
+  print ("jjj");
+}
+      // Get.offNamed(Routes.stockScreen);
+      update();
+    }).catchError((error) {
+
+      Get.snackbar("Error", "something went wrong");
+    });
+
+
+  }
+
+
+
+  Future<void> addProdectCart(Prodect prodect) async {
+
+    var ref = prodectRef.doc(authController.displayUserEmail.value).collection("cart").doc();
+
+    prodect.productNumber = prodectRef.id;
+    prodect.imageUrl = imgUrl.toString();
+    final data = prodect.toJson(); // insert to fiserbase
+    ref.set(data).whenComplete(() {
+      clearController();
+      Get.snackbar("", "Added successfully..");
+
+      // Get.offNamed(Routes.stockScreen);
+      update();
+    }).catchError((error) {
+
+      Get.snackbar("Error", "something went wrong");
+    });
+
+
   }
 
   }

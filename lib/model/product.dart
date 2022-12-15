@@ -17,6 +17,7 @@ class Prodect {
     required this.price,
     required this.description,
     required this.imageUrl,
+
   });
 
   String? productNumber;
@@ -28,6 +29,7 @@ class Prodect {
   String imageUrl;
 
   factory Prodect.fromJson(Map<String, dynamic> json) => Prodect(
+
         productNumber: json["productNumber"],
         productName: json["productName"],
         category: json["category"],
@@ -47,3 +49,29 @@ class Prodect {
         "imageUrl": imageUrl,
       };
 }
+
+
+
+class CartModels {
+
+
+  String? tableNumber;
+  String? nameOrder;
+  String? note ;
+
+  int? quantity;
+  double? price;
+ String? category;
+  String? imageUrl;
+  CartModels({
+    this.tableNumber,
+    this.nameOrder,
+    this.note,
+    this.quantity,
+    this.price,
+    this.category,
+    this.imageUrl,
+
+  });}
+
+

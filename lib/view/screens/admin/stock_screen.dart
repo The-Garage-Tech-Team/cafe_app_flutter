@@ -73,7 +73,8 @@ class StockScreen extends StatelessWidget {
                   prodect: controller.prodects,
                 );
               }
-            }),
+            }
+            ),
         // drawer: SideBarMenu()
     );
   }

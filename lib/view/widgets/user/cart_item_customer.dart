@@ -9,7 +9,7 @@ import 'package:sizer/sizer.dart';
 import '../../../logic/Controller/prodect_controller.dart';
 
 class CardItem extends StatelessWidget {
-  CardItem({Key? key}) : super(key: key);
+  CardItem({Key? key, }) : super(key: key);
 
   final controller = Get.find<ProdectController>();
   final cartController = Get.find<CartController>();
@@ -77,15 +77,18 @@ class CardItem extends StatelessWidget {
     });
   }
 
-  Widget buildCardItems({
+  Widget buildCardItems(
+  {
     required String productName,
     required String catagory,
     required String image,
     required double price,
     required String productId,
-    required Prodect productModels,
+     required Prodect productModels,
+
     required Function() onTap,
-  }) {
+  }
+ ) {
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
@@ -110,7 +113,9 @@ class CardItem extends StatelessWidget {
                   children: [
                     IconButton(
                       onPressed: () {
-                        controller.manageFavourites(productId);
+
+                       // controller.manageFavourites(productId);
+                        controller.addProdectFav(productModels );
                       },
                       icon: controller.isFave(productId)
                           ? const Icon(
@@ -124,7 +129,8 @@ class CardItem extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        cartController.addProductToCart(productModels);
+// controller.addProdectCart(productModels);
+ cartController.addProductToCart(productModels);
                       },
                       icon: const Icon(
                         Icons.shopping_cart,
@@ -168,6 +174,7 @@ class CardItem extends StatelessWidget {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
+
                   ],
                 ),
               ),
