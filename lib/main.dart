@@ -31,11 +31,11 @@ class MyApp extends StatelessWidget {
 
 
          initialRoute:
-          // FirebaseAuth.instance.currentUser != null ||
-          //     GetStorage().read<bool>("auth") == true
-          //     ?
-          // Routes.tabel_number
-         // :
+          FirebaseAuth.instance.currentUser != null ||
+              GetStorage().read<bool>("auth") == true
+              ?
+          Routes.main_Screen
+         :
           AppRoutes.welcome
          ,
 

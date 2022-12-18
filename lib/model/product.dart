@@ -54,7 +54,7 @@ class Prodect {
 
 class CartModels {
 
-
+  String? productNumber;
   String? tableNumber;
   String? nameOrder;
   String? note ;
@@ -64,6 +64,7 @@ class CartModels {
  String? category;
   String? imageUrl;
   CartModels({
+    this.productNumber,
     this.tableNumber,
     this.nameOrder,
     this.note,

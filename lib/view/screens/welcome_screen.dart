@@ -90,26 +90,26 @@ class WelcomeScreen extends StatelessWidget {
                             underLine: TextDecoration.underline,
                           )),
 
-                      TextUtils(
-                        text: "Or ? ",
-                        fointSize: 18,
-                        fontWeight: FontWeight.normal,
-                        color: Colors.black,
-                        underLine: TextDecoration.none,),
+                      // TextUtils(
+                      //   text: "Or ? ",
+                      //   fointSize: 18,
+                      //   fontWeight: FontWeight.normal,
+                      //   color: Colors.black,
+                      //   underLine: TextDecoration.none,),
 
-                      TextButton(
-                          onPressed: () {
-
-
-                            Get.offNamed(Routes.tabel_number);
-                          },
-                          child: TextUtils(
-                            text: 'Skip',
-                            fointSize: 18,
-                            color: buttonColor,
-                            fontWeight: FontWeight.normal,
-                            underLine: TextDecoration.underline,
-                          ))
+                      // TextButton(
+                      //     onPressed: () {
+                      //
+                      //
+                      //       Get.offNamed(Routes.tabel_number);
+                      //     },
+                      //     child: TextUtils(
+                      //       text: 'Skip',
+                      //       fointSize: 18,
+                      //       color: buttonColor,
+                      //       fontWeight: FontWeight.normal,
+                      //       underLine: TextDecoration.underline,
+                      //     ))
                     ],
                   ),
                 ],

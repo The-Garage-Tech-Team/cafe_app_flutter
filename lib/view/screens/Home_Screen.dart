@@ -7,7 +7,7 @@ import '../../View/widgets/textUtils.dart';
 import '../../logic/Controller/prodect_controller.dart';
 import '../../model/product.dart';
 import '../../utils/theme.dart';
-import '../widgets/user/cart_item_customer.dart';
+import '../widgets/cart/cart_item_customer.dart';
 
 
 
@@ -27,9 +27,12 @@ class HomeScreen extends StatelessWidget {
 SizedBox(height: 5,),
 
 
-        Container(
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Container(
 
-            child: SearchProducts()
+              child: SearchProducts()
+          ),
         ),
         SizedBox(height: 5,),
         Container(

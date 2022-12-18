@@ -46,7 +46,7 @@ class ProfileScreen extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: authController.displayUserPhoto.value == ""
-                                  ? const AssetImage("assets/images/avtar.png")
+                                  ? const AssetImage("images/avtar.png")
                                       as ImageProvider
                                   : NetworkImage(
                                       authController.displayUserPhoto.value,
@@ -151,7 +151,7 @@ height: 400,
                                     );
                                   } else {
 
-                                    return Text("If you love art in coffee plesea shara this art");
+                                    return Center(child: TextUtils(text: "Share your creativity with us if you love art on coffee.. ", fointSize: 17, fontWeight: FontWeight.bold, color: Colors.grey,));
                                   }
                                 } else {
                                   return ImageUserProfile(

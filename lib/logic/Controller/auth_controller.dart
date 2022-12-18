@@ -131,7 +131,7 @@ class AuthController extends GetxController
       }
       else{
 
-        Get.offNamed(Routes.tabel_number);
+        Get.offNamed(Routes.main_Screen);
       }
     } on FirebaseAuthException catch (error) {
       String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;

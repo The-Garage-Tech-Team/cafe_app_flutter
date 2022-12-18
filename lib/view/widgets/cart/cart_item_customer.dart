@@ -51,6 +51,7 @@ class CardItem extends StatelessWidget {
                   productId:
                   controller.prodects[index].productNumber.toString(),
                   productModels: controller.prodects[index],
+
                   onTap: () {
                     // Get.to(() => ProductDetailsScreen(
                     //   productModels: controller.productList[index],
@@ -86,7 +87,7 @@ class CardItem extends StatelessWidget {
         required double price,
         required String productId,
         required Prodect productModels,
-
+        CartModels? cartModels,
         required Function() onTap,
       }
       ) {
@@ -113,7 +114,7 @@ class CardItem extends StatelessWidget {
                 width: double.infinity,
                 height: 140,
                 decoration: BoxDecoration(
-                  color: mainColor,
+                  color: Colors.white,
                   borderRadius: BorderRadius.circular(10),
                 ),
                 child: Image.network(
@@ -171,7 +172,7 @@ class CardItem extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-// controller.addProdectCart(productModels);
+                        controller.addProdectCart(productModels);
                         cartController.addProductToCart(productModels);
                       },
                       icon: const Icon(
@@ -188,4 +189,5 @@ class CardItem extends StatelessWidget {
       ),
     );
   }
+
 }

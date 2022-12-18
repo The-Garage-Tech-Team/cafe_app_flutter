@@ -41,20 +41,20 @@ class EmptyCart extends StatelessWidget {
           ),
           ),
           SizedBox(height: 50,),
-        ElevatedButton(
-          style: ElevatedButton.styleFrom(
-           shape: RoundedRectangleBorder(
-             borderRadius: BorderRadius.circular(15),
-
-           ),
-            elevation: 0
-              ,
-            primary: buttonColor,
-          ),
-            onPressed: (){
-              Get.toNamed(Routes.main_Screen);
-            },
-            child: Text("Go to home"))
+        // ElevatedButton(
+        //   style: ElevatedButton.styleFrom(
+        //    shape: RoundedRectangleBorder(
+        //      borderRadius: BorderRadius.circular(15),
+        //
+        //    ),
+        //     elevation: 0
+        //       ,
+        //     primary: buttonColor,
+        //   ),
+        //     onPressed: (){
+        //       Get.toNamed(Routes.);
+        //     },
+        //     child: Text("Go to home"))
         ],
       ),
     );

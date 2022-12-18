@@ -20,32 +20,30 @@ class ProdectController extends GetxController {
 
   var isLoading = true.obs;
   var stoarge = GetStorage();
-final authController = Get.put(AuthController());
+  final authController = Get.put(AuthController());
   final cartController = Get.put(CartController());
   var isCatgeoryLoading = false.obs;
   late TextEditingController
   productNumberController,
-  productNameControlller,
-  productCategoryController,
-  productQuantityController,
-  productPriceController,
-  productDescriptionController;
+      productNameControlller,
+      productCategoryController,
+      productQuantityController,
+      productPriceController,
+      productDescriptionController;
 
 
-  TextEditingController searchTextController =TextEditingController();
+  TextEditingController searchTextController = TextEditingController();
 
   final prodectRef = FirebaseFirestore.instance.collection('prodects');
-
-
 
 
   File? pickedFile;
   String imgUrl = "";
   final imagePicker = ImagePicker();
-  final prodectRefss = FirebaseFirestore.instance.collection('users');
+  final prodectRefUser = FirebaseFirestore.instance.collection('users');
   final getData = FirebaseFirestore.instance.collection('prodects').snapshots();
 
-  List<Prodect> prodects =[];
+  List<Prodect> prodects = [];
   var searchList = <Prodect>[].obs;
 
   //update varible
@@ -56,21 +54,24 @@ final authController = Get.put(AuthController());
   var productDescription = ''.obs;
 
 
-  List <String> imageListSlider =[
-    "https://images.unsplash.com/photo-1540965555-ef9a836372ed?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MTF8MTY2OTc5NXx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60",
-    "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60"
+  List <String> imageListSlider = [
+    "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1572286258217-40142c1c6a70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
+    "https://images.unsplash.com/photo-1520903304654-28bd223f96d7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8Mnw3NDk0MzIwN3x8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
   ];
+
   @override
   Future<void> onInit() async {
-  // TODO: implement onInit
-  super.onInit();
-  productNumberController = TextEditingController();
-  productNameControlller = TextEditingController();
-  productCategoryController = TextEditingController();
-  productQuantityController = TextEditingController();
-  productPriceController = TextEditingController();
-  productDescriptionController = TextEditingController();
-  // TODO: implement initState
+    // TODO: implement onInit
+    super.onInit();
+    productNumberController = TextEditingController();
+    productNameControlller = TextEditingController();
+    productCategoryController = TextEditingController();
+    productQuantityController = TextEditingController();
+    productPriceController = TextEditingController();
+    productDescriptionController = TextEditingController();
+    // TODO: implement initState
 
   }
 
@@ -79,173 +80,151 @@ final authController = Get.put(AuthController());
 
 
   Future<void> addProdect(Prodect prodect) async {
-  if (pickedFile == null) {
-  final ref = FirebaseStorage.instance
-      .ref()
-      .child("productImage")
-      .child(productNameControlller.text + ".jpg");
-  await ref.putFile(pickedFile!);
-  imgUrl = await ref.getDownloadURL();
-  } else {
-  final ref = FirebaseStorage.instance
-      .ref()
-      .child("productImage")
-      .child(productNameControlller.text + ".jpg");
-  await ref.putFile(pickedFile!);
-  imgUrl = await ref.getDownloadURL();
-  }
-  // we nede Refrence to firebase
-  final prodectRef = FirebaseFirestore.instance.collection('prodects').doc();
-  prodect.productNumber = prodectRef.id;
-  prodect.imageUrl = imgUrl.toString();
-  final data = prodect.toJson(); // insert to fiserbase
-  prodectRef.set(data).whenComplete(() {
-  clearController();
-  Get.snackbar("", "Added successfully..");
-  Get.offNamed(Routes.stockScreen);
-  update();
-  }).catchError((error) {
-  Get.snackbar("Error", "something went wrong");
-  });
+    if (pickedFile == null) {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child("productImage")
+          .child(productNameControlller.text + ".jpg");
+      await ref.putFile(pickedFile!);
+      imgUrl = await ref.getDownloadURL();
+    } else {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child("productImage")
+          .child(productNameControlller.text + ".jpg");
+      await ref.putFile(pickedFile!);
+      imgUrl = await ref.getDownloadURL();
+    }
+    // we nede Refrence to firebase
+    final prodectRef = FirebaseFirestore.instance.collection('prodects').doc();
+    prodect.productNumber = prodectRef.id;
+    prodect.imageUrl = imgUrl.toString();
+    final data = prodect.toJson(); // insert to fiserbase
+    prodectRef.set(data).whenComplete(() {
+      clearController();
+      Get.snackbar("", "Added successfully..");
+      Get.offNamed(Routes.stockScreen);
+      update();
+    }).catchError((error) {
+      Get.snackbar("Error", "something went wrong");
+    });
   }
 
   Future<void> TakePhoto(ImageSource sourse) async {
-  final pickedImage =
-  await imagePicker.pickImage(source: sourse, imageQuality: 100);
+    final pickedImage =
+    await imagePicker.pickImage(source: sourse, imageQuality: 100);
 
-  pickedFile = File(pickedImage!.path);
-  print("..............");
-  print(pickedFile);
-  print("..............");
+    pickedFile = File(pickedImage!.path);
+    print("..............");
+    print(pickedFile);
+    print("..............");
   }
 
   // update on firebase
 
-  Future<void> updateProduct(
-  productNumberController,
-  productNameControlller,
-  productCategoryController,
-  productQuantityController,
-  productPriceController,
-  productDescriptionController,
-  imgUrl) async {
-  productName.value = productNameControlller.text;
-  productCategory.value = productCategoryController.text;
-  productQuantity.value = productQuantityController.text;
-  productPrice.value = productPriceController.text;
-  productDescription.value = productDescriptionController.text;
-  imgUrl;
+  Future<void> updateProduct(productNumberController,
+      productNameControlller,
+      productCategoryController,
+      productQuantityController,
+      productPriceController,
+      productDescriptionController,
+      imgUrl) async {
+    productName.value = productNameControlller.text;
+    productCategory.value = productCategoryController.text;
+    productQuantity.value = productQuantityController.text;
+    productPrice.value = productPriceController.text;
+    productDescription.value = productDescriptionController.text;
+    imgUrl;
 
-  final ref = FirebaseStorage.instance
-      .ref()
-      .child("productImage")
-      .child(productNameControlller.text + ".jpg");
-  if (pickedFile == null) {
-  } else {
-  await ref.putFile(pickedFile!);
-  imgUrl = await ref.getDownloadURL();
-  }
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("productImage")
+        .child(productNameControlller.text + ".jpg");
+    if (pickedFile == null) {} else {
+      await ref.putFile(pickedFile!);
+      imgUrl = await ref.getDownloadURL();
+    }
 
-  final docProduct = FirebaseFirestore.instance
-      .collection("prodects")
-      .doc(productNumberController);
-  docProduct.update({
-  "productName": productName.value,
-  "category": productCategory.value,
-  "quantity": int.parse(productQuantity.value),
-  "price": double.parse(productPrice.value),
-  "description": productDescription.value,
-  "imageUrl": imgUrl.toString(),
-  }).whenComplete(() {
-  print("update done");
-  Get.snackbar("", "Update successfully..");
-  clearController();
-  update();
-  Get.offNamed(Routes.stockScreen);
-  });
+    final docProduct = FirebaseFirestore.instance
+        .collection("prodects")
+        .doc(productNumberController);
+    docProduct.update({
+      "productName": productName.value,
+      "category": productCategory.value,
+      "quantity": int.parse(productQuantity.value),
+      "price": double.parse(productPrice.value),
+      "description": productDescription.value,
+      "imageUrl": imgUrl.toString(),
+    }).whenComplete(() {
+      print("update done");
+      Get.snackbar("", "Update successfully..");
+      clearController();
+      update();
+      Get.offNamed(Routes.stockScreen);
+    });
   }
 
   // delete on firebase
-  Future<void> deleteData(
-  productNumberController, productNameControlller) async {
-  await FirebaseFirestore.instance
-      .collection('prodects')
-      .doc(productNumberController)
-      .delete()
-      .whenComplete(() async {
-  Get.snackbar("", "Delete successfully..");
-  print("delete ${productNumberController}");
+  Future<void> deleteData(productNumberController,
+      productNameControlller) async {
+    await FirebaseFirestore.instance
+        .collection('prodects')
+        .doc(productNumberController)
+        .delete()
+        .whenComplete(() async {
+      Get.snackbar("", "Delete successfully..");
+      print("delete ${productNumberController}");
 
-  FirebaseStorage.instance
-      .ref()
-      .child("productImage/")
-      .child(productNameControlller + ".jpg")
-      .delete()
-      .whenComplete(() => print("image delete"));
-  });
+      FirebaseStorage.instance
+          .ref()
+          .child("productImage/")
+          .child(productNameControlller + ".jpg")
+          .delete()
+          .whenComplete(() => print("image delete"));
+    });
   }
 
   // clear Controller
   void clearController() {
-  productNameControlller.clear();
-  productCategoryController.clear();
-  productQuantityController.clear();
-  productPriceController.clear();
-  productDescriptionController.clear();
-  pickedFile = null;
+    productNameControlller.clear();
+    productCategoryController.clear();
+    productQuantityController.clear();
+    productPriceController.clear();
+    productDescriptionController.clear();
+    pickedFile = null;
   }
 
-  var favouritesList =<Prodect> [].obs;
+  var favouritesList = <Prodect>[].obs;
   List<dynamic> prodectsFavourites = [];
-  var cartList =<CartModels> [].obs;
+  var cartList = <CartModels>[].obs;
 
   void manageFavourites(String productId) async {
-  // var existingIndex =
-  // favouritesList.indexWhere((element) => element.productNumber == productId);
-  //
-  // if (existingIndex >= 0) {
-  // favouritesList.removeAt(existingIndex);
-  // await stoarge.remove("isFavouritesList");
-  // } else {
-  // favouritesList
-  //     .add(prodects.firstWhere((element) => element.productNumber == productId));
-  //
-  // await stoarge.write("isFavouritesList", favouritesList);
-  // }
-  // }
-  //
-  // bool isFave(String productId) {
-  // return favouritesList
-  //     .any((element) => element.productNumber== productId);
+
   }
 
   void addSearchToList(String searchName) {
-  searchName = searchName.toLowerCase();
-  searchList.value = prodects.where((search) {
-  var searchTitle = search.productName.toLowerCase();
-  var searchPrice = search.price.toString().toLowerCase();
-  return searchTitle.contains(searchName) ||
-  searchPrice.toString().contains(searchName);
-  }).toList();
+    searchName = searchName.toLowerCase();
+    searchList.value = prodects.where((search) {
+      var searchTitle = search.productName.toLowerCase();
+      var searchPrice = search.price.toString().toLowerCase();
+      return searchTitle.contains(searchName) ||
+          searchPrice.toString().contains(searchName);
+    }).toList();
 
-  update();
+    update();
   }
 
   void clearSearch() {
-  searchTextController.clear();
-  addSearchToList("");
+    searchTextController.clear();
+    addSearchToList("");
   }
 
 
 //
   bool isFave(String productId) {
-    print ("------$productId");
-  return favouritesList
-      .any((element) => element.productName == productId);
-
-
-
-
+    print("------$productId");
+    return favouritesList
+        .any((element) => element.productName == productId);
   }
 
 
@@ -254,57 +233,96 @@ final authController = Get.put(AuthController());
         .ref()
         .child("productImage")
         .child(productNameControlller.text + ".jpg");
-    var refa = prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(prodect.productName);
+    var refa = prodectRefUser.doc(authController.displayUserEmail.value)
+        .collection("Favorite")
+        .doc(prodect.productName);
     prodect.productNumber = prodectRef.id;
     final data = prodect.toJson(); // insert to fiserbase
     refa.set(data).whenComplete(() {
       clearController();
       Get.snackbar("", "Added successfully..");
-if(prodect.productName == prodectRef.id){
+      if (prodect.productName == prodectRef.id) {
+        print("jjj");
+        print(prodect.productNumber);
 
-  print ("jjj");
-  print(prodect.productNumber);
-
-  print ("jjj");
-}
+        print("jjj");
+      }
       // Get.offNamed(Routes.stockScreen);
       update();
     }).catchError((error) {
-
       Get.snackbar("Error", "something went wrong");
     });
   }
 
 
-   Future<void> deleteDataFav(String nameId) async {
-    await  prodectRefss.doc(authController.displayUserEmail.value).collection("Favorite").doc(nameId).delete();
+  Future<void> deleteDataFav(String nameId) async {
+    await prodectRefUser.doc(authController.displayUserEmail.value).collection(
+        "Favorite").doc(nameId).delete();
+  }
 
 
-   }
 
+
+  var orders = {}.obs;
+  List<CartModels> order = [];
 
   Future<void> addProdectCart(Prodect prodect) async {
-
-    var ref = prodectRef.doc(authController.displayUserEmail.value).collection("cart").doc();
+    final ref = FirebaseStorage.instance
+        .ref()
+        .child("productImage")
+        .child(productNameControlller.text + ".jpg");
+    var refs = FirebaseFirestore.instance.collection('users').doc(
+        authController.displayUserEmail.value).collection("cart").doc(
+        prodect.productName);
 
     prodect.productNumber = prodectRef.id;
-    prodect.imageUrl = imgUrl.toString();
+    // prodect.imageUrl = imgUrl.toString();
     final data = prodect.toJson(); // insert to fiserbase
-    ref.set(data).whenComplete(() {
+    refs.set(data).whenComplete(() {
       clearController();
       Get.snackbar("", "Added successfully..");
+      if (orders.containsKey(prodect)) {
+        orders[prodect] += 1;
+      } else {
+        // Get.snackbar("Error", "Somthing went wrong ");
+        orders[prodect] = 1;
+      }
+
 
       // Get.offNamed(Routes.stockScreen);
       update();
     }).catchError((error) {
-
       Get.snackbar("Error", "something went wrong");
     });
-
-
   }
 
 
-
-
+  Future<void> deleteDataCart(String nameId) async {
+    await prodectRefUser.doc(authController.displayUserEmail.value).collection(
+        "cart").doc(nameId).delete();
   }
+
+  get productSubTotal =>
+      orders.entries.map((e) => e.key.price * e.value).toList();
+
+  get total =>
+      orders.entries
+          .map((e) => e.key.price * e.value)
+          .toList()
+          .reduce((value, element) => value + element)
+          .toStringAsFixed(2);
+
+
+  int quantity() {
+    if (orders.isEmpty) {
+      return 0;
+    } else {
+      return orders.entries
+          .map((e) => e.value)
+          .toList()
+          .reduce((value, element) => value + element);
+    }
+  }
+
+
+}

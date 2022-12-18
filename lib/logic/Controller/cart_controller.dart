@@ -25,19 +25,7 @@ class CartController extends GetxController{
       productsMap[productModels] = 1;
     }
 
-    // prodectRef.upd({
-    //   "cart": FieldValue.arrayUnion([
-    //     {
-    //       "id": itemId,
-    //       "productId": product.id,
-    //       "name": product.name,
-    //       "quantity": 1,
-    //       "price": product.price,
-    //       "image": product.image,
-    //       "cost": product.price
-    //     }
-    //   ])
-    // });
+
   }
 
   void removeProductsFarmCart(Prodect productModels) {

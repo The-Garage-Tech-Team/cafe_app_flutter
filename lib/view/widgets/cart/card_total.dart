@@ -7,12 +7,12 @@ import 'package:get/get.dart';
 class CartTotal extends StatelessWidget {
   CartTotal({Key? key}) : super(key: key);
 
-  final controller = Get.find<CartController>();
+ final controller = Get.find<CartController>();
 
   @override
   Widget build(BuildContext context) {
-    return Obx(
-          () => Container(
+    return
+     Container(
         padding: const EdgeInsets.all(25),
         child: Row(
           children: [
@@ -27,7 +27,8 @@ class CartTotal extends StatelessWidget {
                   underLine: TextDecoration.none, fointSize: 16,
                 ),
                 Text(
-                  "\$${controller.total}",
+                  "\$${controller.total}"
+                  ,
                   style: TextStyle(
                     color: Get.isDarkMode ? Colors.white : Colors.black,
                     fontSize: 20,
@@ -49,7 +50,7 @@ class CartTotal extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15),
                     ),
                     elevation: 0,
-                    primary: Get.isDarkMode ? googleColor : googleColor,
+                    primary: buttonColor,
                   ),
                   onPressed: () {
 
@@ -74,8 +75,8 @@ class CartTotal extends StatelessWidget {
               ),
             ),
           ],
-        ),
-      ),
-    );
+        ),);
+
+
   }
 }

@@ -14,11 +14,11 @@ class SearchProducts extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetBuilder<ProdectController>(
       builder: (_) => TextField(
-       controller: controller.searchTextController,
+        controller: controller.searchTextController,
         cursorColor: Colors.grey,
         keyboardType: TextInputType.text,
         onChanged: (searchName) {
-         controller.addSearchToList(searchName);
+          controller.addSearchToList(searchName);
         },
         decoration: InputDecoration(
           filled: true,

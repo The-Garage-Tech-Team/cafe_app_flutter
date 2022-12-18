@@ -77,16 +77,7 @@ class FavoriteInStock extends StatelessWidget {
                       SizedBox(
                         height: 3,
                       ),
-                      Text(
-                        "${prodect[index].quantity}",
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w500,
-                            color: Color.fromRGBO(0, 0, 0, 1)),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
+
                       Row(children: [
                         Text("\$${prodect[index].price}",
                             style: TextStyle(
