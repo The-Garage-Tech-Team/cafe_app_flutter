@@ -34,12 +34,12 @@ class CartScreen extends StatelessWidget {
        buttonColor.withOpacity(0.8),
           centerTitle: true,
           actions: [
-            IconButton(
-              onPressed: () {
-                // controller.clearAllProducts();
-              },
-              icon: const Icon(Icons.backspace,color: Colors.white,),
-            ),
+            // IconButton(
+            //   onPressed: () {
+            //     // controller.clearAllProducts();
+            //   },
+            //   icon: const Icon(Icons.backspace,color: Colors.white,),
+            // ),
 
           ],
 
