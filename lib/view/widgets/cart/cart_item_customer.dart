@@ -16,7 +16,9 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Obx(() {
+    return
+      Obx(()
+    {
       return Expanded(
         child: controller.searchList.isEmpty &&
             controller.searchTextController.text.isNotEmpty
@@ -80,6 +82,7 @@ class CardItem extends StatelessWidget {
 
   Widget buildCardItems(
 
+
       {
         required String productName,
         required String catagory,
@@ -91,6 +94,8 @@ class CardItem extends StatelessWidget {
         required Function() onTap,
       }
       ) {
+    print ("************");
+    print(productModels.productNumber);
     return Padding(
       padding: const EdgeInsets.all(5),
       child: InkWell(
@@ -149,25 +154,26 @@ class CardItem extends StatelessWidget {
                 ),
 
               ),
-              Obx(
-                    () => Row(
+              // Obx(
+              //       () =>
+                        Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      onPressed: () {
+                      onPressed: () async {
 
                         // controller.manageFavourites(productId);
                         print("kkkkkkkk $productName");
-                        controller.addProdectFav(productModels );
+                        await controller.addProdectFav(productModels );
                       },
-                      icon: controller.isFave(productName)
-                          ? const Icon(
+                      icon: controller.isFave(productModels.productNumber!)
+                          ?  Icon(
                         Icons.favorite,
                         color: Colors.red,
                       )
-                          : const Icon(
+                          : Icon(
                         Icons.favorite_outline,
-                        color: mainColor,
+                        color: Colors.red,
                       ),
                     ),
                     IconButton(
@@ -182,7 +188,7 @@ class CardItem extends StatelessWidget {
                     ),
                   ],
                 ),
-              ),
+             // ),
             ],
           ),
         ),

@@ -29,7 +29,7 @@ class FavoritesScreen extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               print("not empty screen");
-              controller.prodects = snapshot.data!.docs
+              controller.prodectsFav = snapshot.data!.docs
                   .map((e) => Prodect(
                   productNumber: e['productNumber'],
                   productName: e['productName'],
@@ -39,11 +39,11 @@ class FavoritesScreen extends StatelessWidget {
                   quantity: e['quantity'],
                   imageUrl: e['imageUrl']))
                   .toList();
-              print("prodects.length   ${controller.prodects.length}");
+              print("prodects.length   ${controller.prodectsFav.length}");
 
-              if (controller.prodects.isNotEmpty) {
+              if (controller.prodectsFav.isNotEmpty) {
                 return FavoriteInStock(
-                  prodect: controller.prodects,
+                  prodect: controller.prodectsFav,
                 );
               } else {
                 print("empty screen");
@@ -51,7 +51,7 @@ class FavoritesScreen extends StatelessWidget {
               }
             } else {
               return FavoriteInStock(
-                prodect: controller.prodects,
+                prodect: controller.prodectsFav,
               );
             }
 

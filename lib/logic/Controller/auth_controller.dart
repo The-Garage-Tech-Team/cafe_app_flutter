@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:cafe_app_project/logic/Controller/main_controller.dart';
 import 'package:cafe_app_project/routes/routs.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -130,6 +131,7 @@ class AuthController extends GetxController
         Get.offNamed(Routes.stockScreen);
       }
       else{
+        MainController.currentIndex.value=0;
 
         Get.offNamed(Routes.main_Screen);
       }

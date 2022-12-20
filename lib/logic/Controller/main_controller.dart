@@ -15,7 +15,7 @@ import '../../view/screens/Home_Screen.dart';
 
 class MainController  extends GetxController{
   //للنفقيشن بار
-  RxInt currentIndex = 0.obs;
+  static RxInt currentIndex = 0.obs;
   final tabs = [
     HomeScreen(),
     FavoritesScreen(),

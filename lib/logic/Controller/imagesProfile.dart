@@ -16,10 +16,9 @@ class ImagesController extends GetxController{
   String? image = "";
   final  picker = ImagePicker();
 
+  File? pickedFile;
+  List<UserImages> userImages =[];
 
-   List<UserImages> userImages =[];
-
-  // List<UserImages> prodects =[];
 
   @override
   void onInit() {
@@ -53,31 +52,10 @@ class ImagesController extends GetxController{
 
 
 
-  File? pickedFile;
+
+
   Future<void> addProdect(UserImages userImages) async {
 
-
-
-var counter = 0;
-
-// for (var i = 0 ;i <= image.length ;i++ ){
-//   if (pickedFile == null) {
-//     final ref = FirebaseStorage.instance
-//         .ref()
-//         .child("ok")
-//         .child("kkj/${i++}");
-//     await ref.putFile(pickedFile!);
-//     image = (await ref.getDownloadURL()) as List<File>  ;
-//   } else {
-//     final ref = FirebaseStorage.instance
-//         .ref()
-//         .child("77")
-//         .child("kkj/${i++}");
-//     await ref.putFile(pickedFile!);
-//     image = (await ref.getDownloadURL()) as List<File> ;
-//   }
-//
-// }
     if (pickedFile == null) {
       final ref = FirebaseStorage.instance
           .ref()

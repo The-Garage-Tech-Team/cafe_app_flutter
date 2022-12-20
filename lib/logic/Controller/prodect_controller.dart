@@ -18,8 +18,8 @@ import 'package:image_picker/image_picker.dart';
 
 class ProdectController extends GetxController {
 
-  var isLoading = true.obs;
-  var stoarge = GetStorage();
+  // var isLoading = true.obs;
+  // var stoarge = GetStorage();
   final authController = Get.put(AuthController());
   final cartController = Get.put(CartController());
   var isCatgeoryLoading = false.obs;
@@ -34,18 +34,20 @@ class ProdectController extends GetxController {
 
   TextEditingController searchTextController = TextEditingController();
 
-  final prodectRef = FirebaseFirestore.instance.collection('prodects');
+  // final prodectRef = FirebaseFirestore.instance.collection('prodects');
 
 
   File? pickedFile;
   String imgUrl = "";
   final imagePicker = ImagePicker();
+
   final prodectRefUser = FirebaseFirestore.instance.collection('users');
   final getData = FirebaseFirestore.instance.collection('prodects').snapshots();
 
   List<Prodect> prodects = [];
   var searchList = <Prodect>[].obs;
-
+ var carts = <CartModels>[].obs;
+  var prodectsFav =<Prodect> [];
   //update varible
   var productName = ''.obs;
   var productCategory = ''.obs;
@@ -194,13 +196,13 @@ class ProdectController extends GetxController {
     pickedFile = null;
   }
 
-  var favouritesList = <Prodect>[].obs;
-  List<dynamic> prodectsFavourites = [];
-  var cartList = <CartModels>[].obs;
+  // var favouritesList = <Prodect>[].obs;
+  // List<dynamic> prodectsFavourites = [];
+  // var cartListcartList = <CartModels>[].obs;
 
-  void manageFavourites(String productId) async {
-
-  }
+  // void manageFavourites(String productId) async {
+  //
+  // }
 
   void addSearchToList(String searchName) {
     searchName = searchName.toLowerCase();
@@ -221,37 +223,74 @@ class ProdectController extends GetxController {
 
 
 //
-  bool isFave(String productId) {
-    print("------$productId");
-    return favouritesList
-        .any((element) => element.productName == productId);
+
+
+var id  ;
+  Future<void> addProdectFav(Prodect prodect) async {
+
+
+    var indexWanted = prodectsFav.indexWhere((element) {
+      print("-----------------nnn${element.productNumber}");
+      return element.productNumber == prodect.productNumber;
+    });
+    print("-------------nn ${prodect.productNumber}");
+    print(indexWanted);
+
+    print("------------nn-");
+
+    if (indexWanted >= 0) {
+      // final refs = FirebaseStorage.instance
+      //     .ref()
+      //     .child("productImage")
+      //     .child(productNameControlller.text + ".jpg");
+      await prodectRefUser.doc(authController.displayUserEmail.value).collection(
+          "Favorite").doc(prodect.productNumber).delete();
+
+      Get.snackbar("", "deleted successfully..");
+     // Get.toNamed(Routes.cartScreen);
+    } else {
+      final ref = FirebaseStorage.instance
+          .ref()
+          .child("productImage")
+          .child(productNameControlller.text + ".jpg");
+      final comicRef = prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("Favorite")
+          .doc(prodect.productNumber);
+      prodect.productNumber = comicRef.id;
+      id = prodect.productNumber;
+      final data = prodect.toJson(); // insert to fiserbase
+      print("----- ${comicRef.id}");
+      print("------------- ${prodect.productNumber}");
+
+      comicRef.set(data).whenComplete(() {
+        if (comicRef.id == prodect.productNumber.toString()) {
+          Get.snackbar("", "Added successfully..");
+          // Get.toNamed(Routes.cartScreen);
+        } else {
+          Get.snackbar("Error", "something went wrong");
+        }
+        update();
+      }
+      )
+          .catchError((error) {
+        Get.snackbar("Error", "something went wrong");
+      });
+    }
+
+
+
+
+
   }
 
+  bool isFave(String productId) {
+    print("------&&&&&&$productId");
+print(productNumberController.text);
 
-  Future<void> addProdectFav(Prodect prodect) async {
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("productImage")
-        .child(productNameControlller.text + ".jpg");
-    var refa = prodectRefUser.doc(authController.displayUserEmail.value)
-        .collection("Favorite")
-        .doc(prodect.productName);
-    prodect.productNumber = prodectRef.id;
-    final data = prodect.toJson(); // insert to fiserbase
-    refa.set(data).whenComplete(() {
-      clearController();
-      Get.snackbar("", "Added successfully..");
-      if (prodect.productName == prodectRef.id) {
-        print("jjj");
-        print(prodect.productNumber);
+    return prodectsFav.any((element) =>
+      element.productNumber == productId);
 
-        print("jjj");
-      }
-      // Get.offNamed(Routes.stockScreen);
-      update();
-    }).catchError((error) {
-      Get.snackbar("Error", "something went wrong");
-    });
   }
 
 
@@ -262,38 +301,77 @@ class ProdectController extends GetxController {
 
 
 
+ var orders = {}.obs;
 
-  var orders = {}.obs;
-  List<CartModels> order = [];
 
   Future<void> addProdectCart(Prodect prodect) async {
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("productImage")
-        .child(productNameControlller.text + ".jpg");
-    var refs = FirebaseFirestore.instance.collection('users').doc(
-        authController.displayUserEmail.value).collection("cart").doc(
-        prodect.productName);
-
-    prodect.productNumber = prodectRef.id;
-    // prodect.imageUrl = imgUrl.toString();
-    final data = prodect.toJson(); // insert to fiserbase
-    refs.set(data).whenComplete(() {
-      clearController();
-      Get.snackbar("", "Added successfully..");
-      if (orders.containsKey(prodect)) {
-        orders[prodect] += 1;
-      } else {
-        // Get.snackbar("Error", "Somthing went wrong ");
-        orders[prodect] = 1;
-      }
 
 
-      // Get.offNamed(Routes.stockScreen);
-      update();
-    }).catchError((error) {
-      Get.snackbar("Error", "something went wrong");
+
+
+    var indexWanted = carts.indexWhere((element) {
+      print("-----------------${element.productNumber}");
+      return element.productNumber == prodect.productNumber;
     });
+    print("------------- ${prodect.productNumber}");
+    print(indexWanted);
+    print("-------------");
+
+    if (indexWanted >= 0) {
+      await prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("carts")
+          .doc(prodect.productNumber.toString())
+          .delete();
+      Get.snackbar("", "deleted successfully..");
+      // Get.toNamed(Routes.mainScreen);
+    } else {
+      final comicRef = prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("carts")
+          .doc(prodect.productNumber.toString());
+      final data = prodect.toJson(); // insert to fiserbase
+      print("----- ${comicRef.id}");
+      print("------------- ${prodect.productNumber}");
+
+      comicRef.set(data).whenComplete(() {
+        if (comicRef.id == prodect.productNumber.toString()) {
+          Get.snackbar("", "Added successfully..");
+          // Get.toNamed(Routes.mainScreen);
+        } else {
+          Get.snackbar("Error", "something went wrong");
+        }
+      }).catchError((error) {
+        Get.snackbar("Error", "something went wrong");
+      });
+    }
+    // final ref = FirebaseStorage.instance
+    //     .ref()
+    //     .child("productImage")
+    //     .child(productNameControlller.text + ".jpg");
+    // var refs = FirebaseFirestore.instance.collection('users').doc(
+    //     authController.displayUserEmail.value).collection("cart").doc(
+    //     prodect.productName);
+    //
+    // prodect.productNumber = prodectRef.id;
+    // // prodect.imageUrl = imgUrl.toString();
+    // final data = prodect.toJson(); // insert to fiserbase
+    // refs.set(data).whenComplete(() {
+    //   clearController();
+    //   Get.snackbar("", "Added successfully..");
+    //   if (orders.containsKey(prodect)) {
+    //     orders[prodect] += 1;
+    //   } else {
+    //     // Get.snackbar("Error", "Somthing went wrong ");
+    //     orders[prodect] = 1;
+    //   }
+    //
+    //
+    //   // Get.offNamed(Routes.stockScreen);
+    //   update();
+    // }).catchError((error) {
+    //   Get.snackbar("Error", "something went wrong");
+    // });
   }
 
 
@@ -302,27 +380,27 @@ class ProdectController extends GetxController {
         "cart").doc(nameId).delete();
   }
 
-  get productSubTotal =>
-      orders.entries.map((e) => e.key.price * e.value).toList();
+  // get productSubTotal =>
+  //     orders.entries.map((e) => e.key.price * e.value).toList();
 
-  get total =>
-      orders.entries
-          .map((e) => e.key.price * e.value)
-          .toList()
-          .reduce((value, element) => value + element)
-          .toStringAsFixed(2);
-
-
-  int quantity() {
-    if (orders.isEmpty) {
-      return 0;
-    } else {
-      return orders.entries
-          .map((e) => e.value)
-          .toList()
-          .reduce((value, element) => value + element);
-    }
-  }
+  // get total =>
+  //     orders.entries
+  //         .map((e) => e.key.price * e.value)
+  //         .toList()
+  //         .reduce((value, element) => value + element)
+  //         .toStringAsFixed(2);
+  //
+  //
+  // int quantity() {
+  //   if (orders.isEmpty) {
+  //     return 0;
+  //   } else {
+  //     return orders.entries
+  //         .map((e) => e.value)
+  //         .toList()
+  //         .reduce((value, element) => value + element);
+  //   }
+  // }
 
 
 }

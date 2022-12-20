@@ -1,4 +1,5 @@
 
+
 import 'package:badges/badges.dart';
 import 'package:cafe_app_project/logic/Controller/cart_controller.dart';
 import 'package:cafe_app_project/utils/theme.dart';
@@ -25,25 +26,26 @@ class MainScreen extends StatelessWidget {
               elevation: 0,
               leading: Container(),
               actions: [
-                Obx(
-                      () => Badge(
-                    position: BadgePosition.topEnd(top: 0, end: 3),
-                    animationDuration: const Duration(milliseconds: 300),
-                    animationType: BadgeAnimationType.slide,
-                    badgeContent: Text(
-                      cartController.quantity().toString(),
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    child: IconButton(
+                // Obx(
+                //       () =>
+              // Badge(
+              //       position: BadgePosition.topEnd(top: 0, end: 3),
+              //       animationDuration: const Duration(milliseconds: 300),
+              //       animationType: BadgeAnimationType.slide,
+              //       badgeContent: Text(
+              //         cartController.quantity().toString(),
+              //         style: const TextStyle(color: Colors.white),
+              //       ),
+                IconButton(
                       onPressed: () {
                         Get.toNamed(Routes.cartScreen);
                       },
                       icon: Icon(Icons.shopping_cart,color: Colors.white,),
-                    ),
+                    // ),
                   ),
 
 
-                ),
+              // ),
                 IconButton(
                   onPressed: () {
                    Get.toNamed(Routes.settingBar);
@@ -56,12 +58,12 @@ class MainScreen extends StatelessWidget {
                 ),
               ],
               backgroundColor:buttonColor.withOpacity(0.8) ,
-              title: Text(controller.title[controller.currentIndex.value],style: TextStyle(color: Colors.white),),
+              title: Text(controller.title[MainController.currentIndex.value],style: TextStyle(color: Colors.white),),
               centerTitle: true,
             ),
             bottomNavigationBar: BottomNavigationBar(
               backgroundColor: Colors.white ,
-              currentIndex: controller.currentIndex.value,
+              currentIndex: MainController.currentIndex.value,
               type: BottomNavigationBarType.fixed,
               items: [
                 BottomNavigationBarItem(
@@ -101,11 +103,11 @@ class MainScreen extends StatelessWidget {
                 ),
               ],
               onTap: (index) {
-                controller.currentIndex.value = index;
+                MainController.currentIndex.value = index;
               },
             ),
             body: IndexedStack(
-              index: controller.currentIndex.value,
+              index: MainController.currentIndex.value,
               children: controller.tabs.value,
             ),
           );

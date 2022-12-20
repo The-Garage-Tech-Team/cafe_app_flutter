@@ -17,7 +17,7 @@ import '../widgets/cart/empty_cart.dart';
 
 class CartScreen extends StatelessWidget {
   CartScreen({Key? key}) : super(key: key);
-  final controller = Get.find<CartController>();
+ final controller = Get.find<CartController>();
 
 
   // final controller = Get.put(ProdectController());

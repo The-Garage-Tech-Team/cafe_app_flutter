@@ -70,7 +70,7 @@ class FavoriteInStock extends StatelessWidget {
                           ),
                           IconButton(onPressed: (){
 
-                           controller.deleteDataFav( '${prodect[index].productName}');
+                           controller.deleteDataFav( '${prodect[index].productNumber}');
                           }, icon: Icon(Icons.delete)),
                         ],
                       ),
