@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../../routes/routs.dart';
+import '../../../routes/routs.dart';
 
 
 

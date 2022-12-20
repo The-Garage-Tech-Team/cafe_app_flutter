@@ -225,7 +225,7 @@ class ProdectController extends GetxController {
 //
 
 
-var id  ;
+
   Future<void> addProdectFav(Prodect prodect) async {
 
 
@@ -258,7 +258,7 @@ var id  ;
           .collection("Favorite")
           .doc(prodect.productNumber);
       prodect.productNumber = comicRef.id;
-      id = prodect.productNumber;
+      // id = prodect.productNumber;
       final data = prodect.toJson(); // insert to fiserbase
       print("----- ${comicRef.id}");
       print("------------- ${prodect.productNumber}");

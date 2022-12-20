@@ -16,9 +16,9 @@ class EditProfile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<AuthController>(
-      builder: (_) =>controller.googleSign.currentUser!=null ? Container(): Material(
-        color: Colors.transparent,
-        child: InkWell(
+      builder: (_) =>
+
+      InkWell(
           onTap: () {
             Get.toNamed(Routes.editProfileScreen);
           },
@@ -48,7 +48,7 @@ class EditProfile extends StatelessWidget {
             ],
           ),
         ),
-      ),
+
     );
   }
 }

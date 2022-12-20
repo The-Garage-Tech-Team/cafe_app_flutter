@@ -166,7 +166,8 @@ class CardItem extends StatelessWidget {
                         print("kkkkkkkk $productName");
                         await controller.addProdectFav(productModels );
                       },
-                      icon: controller.isFave(productModels.productNumber!)
+                      icon:
+                      controller.isFave(productModels.productNumber!)
                           ?  Icon(
                         Icons.favorite,
                         color: Colors.red,

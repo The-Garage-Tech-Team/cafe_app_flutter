@@ -13,7 +13,7 @@ import '../../../logic/Controller/imagesProfile.dart';
 import '../../../logic/Controller/setting_controller.dart';
 
 import '../../widgets/admin/stock/empty_screen.dart';
-import '../../widgets/settings/all_Image.dart';
+import '../../widgets/settings/imageUserProfile.dart';
 import '../../widgets/settings/edit_profile.dart';
 
 import '../../widgets/settings/settings.dart';

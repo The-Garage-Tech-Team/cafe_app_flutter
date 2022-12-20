@@ -1,19 +1,15 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:sizer/sizer.dart';
+
 
 
 import '../../../logic/Controller/auth_controller.dart';
-import '../../../routes/routs.dart';
-import '../../../utils/theme.dart';
-import '../../widgets/auth/auth_button.dart';
-import '../../widgets/auth/auth_text_filed.dart';
-import '../../widgets/auth/continer.dart';
 
-import '../../widgets/auth/icon_widget.dart';
+import '../../../utils/theme.dart';
+
 import '../../widgets/auth/login_email_form.dart';
-import '../../widgets/auth/login_phone.dart';
+
 import '../../widgets/textUtils.dart';
 
 
