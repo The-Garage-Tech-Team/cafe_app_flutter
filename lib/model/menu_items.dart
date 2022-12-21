@@ -16,12 +16,6 @@ class MenuItems {
   ];
 
 
-  static const List<MenuItemPoup> menuItemUser = [
-
-
-    itemDelete,
-  ];
-
   static const itemUpdate =
   MenuItemPoup(icon: Icons.edit, text: 'Edit', color: Colors.black);
 

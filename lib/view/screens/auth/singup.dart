@@ -1,9 +1,3 @@
-
-
-
-
-
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -24,23 +18,25 @@ class SignUpScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Padding(
           padding:
-          const EdgeInsets.only(top: 90, bottom: 363, right: 40, left: 50),
+              const EdgeInsets.only(top: 90, bottom: 363, right: 40, left: 50),
           child: Column(
             children: [
               SizedBox(
                 height: 63,
               ),
-              TextUtils( text: "SING UP", fointSize: 15, fontWeight: FontWeight.bold, color: buttonColor,),
-
-
+              TextUtils(
+                text: "SING UP",
+                fointSize: 15,
+                fontWeight: FontWeight.bold,
+                color: buttonColor,
+              ),
               SizedBox(
                 height: 23,
               ),
-
               Container(
                 height: 650,
                 child:
-                TabBarView(controller: controller.tabController, children: [
+                    TabBarView(controller: controller.tabController, children: [
                   SignUp_Email_Form(),
                   // SignUp_Phone_Number_Form(),
                 ]),

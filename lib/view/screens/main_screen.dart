@@ -1,5 +1,3 @@
-
-
 import 'package:badges/badges.dart';
 import 'package:cafe_app_project/logic/Controller/cart_controller.dart';
 import 'package:cafe_app_project/utils/theme.dart';
@@ -19,57 +17,51 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Obx(
-            () {
+        () {
           return Scaffold(
             backgroundColor: Colors.white,
             appBar: AppBar(
               elevation: 0,
               leading: Container(),
               actions: [
-                // Obx(
-                //       () =>
-              // Badge(
-              //       position: BadgePosition.topEnd(top: 0, end: 3),
-              //       animationDuration: const Duration(milliseconds: 300),
-              //       animationType: BadgeAnimationType.slide,
-              //       badgeContent: Text(
-              //         cartController.quantity().toString(),
-              //         style: const TextStyle(color: Colors.white),
-              //       ),
-                IconButton(
-                      onPressed: () {
-                        Get.toNamed(Routes.cartScreen);
-                      },
-                      icon: Icon(Icons.shopping_cart,color: Colors.white,),
-                    // ),
-                  ),
-
-
-              // ),
                 IconButton(
                   onPressed: () {
-                   Get.toNamed(Routes.settingBar);
+                    Get.toNamed(Routes.cartScreen);
                   },
                   icon: Icon(
+                    Icons.shopping_cart,
+                    color: Colors.white,
+                  ),
+                  // ),
+                ),
 
+                // ),
+                IconButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.settingBar);
+                  },
+                  icon: Icon(
                     Icons.settings,
                     color: Colors.black,
                   ),
                 ),
               ],
-              backgroundColor:buttonColor.withOpacity(0.8) ,
-              title: Text(controller.title[MainController.currentIndex.value],style: TextStyle(color: Colors.white),),
+              backgroundColor: buttonColor.withOpacity(0.8),
+              title: Text(
+                controller.title[MainController.currentIndex.value],
+                style: TextStyle(color: Colors.white),
+              ),
               centerTitle: true,
             ),
             bottomNavigationBar: BottomNavigationBar(
-              backgroundColor: Colors.white ,
+              backgroundColor: Colors.white,
               currentIndex: MainController.currentIndex.value,
               type: BottomNavigationBarType.fixed,
               items: [
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.home,
-                    color:  buttonColor ,
+                    color: buttonColor,
                   ),
                   icon: Icon(
                     Icons.home,
@@ -77,7 +69,6 @@ class MainScreen extends StatelessWidget {
                   ),
                   label: '',
                 ),
-
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.favorite,
@@ -89,15 +80,14 @@ class MainScreen extends StatelessWidget {
                   ),
                   label: '',
                 ),
-
                 BottomNavigationBarItem(
                   activeIcon: Icon(
                     Icons.person_pin,
-                    color: buttonColor ,
+                    color: buttonColor,
                   ),
                   icon: Icon(
                     Icons.person_pin,
-                    color:  Colors.grey ,
+                    color: Colors.grey,
                   ),
                   label: '',
                 ),
@@ -115,5 +105,4 @@ class MainScreen extends StatelessWidget {
       ),
     );
   }
-
 }

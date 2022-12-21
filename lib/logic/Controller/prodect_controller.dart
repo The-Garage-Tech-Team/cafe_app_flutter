@@ -1,7 +1,4 @@
-
-
-
-  import 'dart:io';
+import 'dart:io';
 
 import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
 import 'package:cafe_app_project/logic/Controller/cart_controller.dart';
@@ -15,27 +12,18 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:image_picker/image_picker.dart';
 
-
 class ProdectController extends GetxController {
-
-  // var isLoading = true.obs;
-  // var stoarge = GetStorage();
   final authController = Get.put(AuthController());
   final cartController = Get.put(CartController());
   var isCatgeoryLoading = false.obs;
-  late TextEditingController
-  productNumberController,
+  late TextEditingController productNumberController,
       productNameControlller,
       productCategoryController,
       productQuantityController,
       productPriceController,
       productDescriptionController;
 
-
   TextEditingController searchTextController = TextEditingController();
-
-  // final prodectRef = FirebaseFirestore.instance.collection('prodects');
-
 
   File? pickedFile;
   String imgUrl = "";
@@ -46,8 +34,8 @@ class ProdectController extends GetxController {
 
   List<Prodect> prodects = [];
   var searchList = <Prodect>[].obs;
- var carts = <CartModels>[].obs;
-  var prodectsFav =<Prodect> [];
+  var carts = <CartModels>[].obs;
+  var prodectsFav = <Prodect>[];
   //update varible
   var productName = ''.obs;
   var productCategory = ''.obs;
@@ -55,8 +43,7 @@ class ProdectController extends GetxController {
   var productPrice = ''.obs;
   var productDescription = ''.obs;
 
-
-  List <String> imageListSlider = [
+  List<String> imageListSlider = [
     "https://images.unsplash.com/photo-1592663527359-cf6642f54cff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTF8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
     "https://images.unsplash.com/photo-1559496417-e7f25cb247f3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTd8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
     "https://images.unsplash.com/photo-1572286258217-40142c1c6a70?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fGNvb2ZmZWV8ZW58MHx8MHx8&auto=format&fit=crop&w=800&q=60",
@@ -74,12 +61,13 @@ class ProdectController extends GetxController {
     productPriceController = TextEditingController();
     productDescriptionController = TextEditingController();
     // TODO: implement initState
-
+    searchTextController
+      ..addListener(() {
+        update();
+      });
   }
 
-
   // add to firebase
-
 
   Future<void> addProdect(Prodect prodect) async {
     if (pickedFile == null) {
@@ -114,7 +102,7 @@ class ProdectController extends GetxController {
 
   Future<void> TakePhoto(ImageSource sourse) async {
     final pickedImage =
-    await imagePicker.pickImage(source: sourse, imageQuality: 100);
+        await imagePicker.pickImage(source: sourse, imageQuality: 100);
 
     pickedFile = File(pickedImage!.path);
     print("..............");
@@ -124,7 +112,8 @@ class ProdectController extends GetxController {
 
   // update on firebase
 
-  Future<void> updateProduct(productNumberController,
+  Future<void> updateProduct(
+      productNumberController,
       productNameControlller,
       productCategoryController,
       productQuantityController,
@@ -142,7 +131,8 @@ class ProdectController extends GetxController {
         .ref()
         .child("productImage")
         .child(productNameControlller.text + ".jpg");
-    if (pickedFile == null) {} else {
+    if (pickedFile == null) {
+    } else {
       await ref.putFile(pickedFile!);
       imgUrl = await ref.getDownloadURL();
     }
@@ -167,8 +157,8 @@ class ProdectController extends GetxController {
   }
 
   // delete on firebase
-  Future<void> deleteData(productNumberController,
-      productNameControlller) async {
+  Future<void> deleteData(
+      productNumberController, productNameControlller) async {
     await FirebaseFirestore.instance
         .collection('prodects')
         .doc(productNumberController)
@@ -196,14 +186,6 @@ class ProdectController extends GetxController {
     pickedFile = null;
   }
 
-  // var favouritesList = <Prodect>[].obs;
-  // List<dynamic> prodectsFavourites = [];
-  // var cartListcartList = <CartModels>[].obs;
-
-  // void manageFavourites(String productId) async {
-  //
-  // }
-
   void addSearchToList(String searchName) {
     searchName = searchName.toLowerCase();
     searchList.value = prodects.where((search) {
@@ -221,14 +203,9 @@ class ProdectController extends GetxController {
     addSearchToList("");
   }
 
-
 //
 
-
-
   Future<void> addProdectFav(Prodect prodect) async {
-
-
     var indexWanted = prodectsFav.indexWhere((element) {
       print("-----------------nnn${element.productNumber}");
       return element.productNumber == prodect.productNumber;
@@ -239,15 +216,14 @@ class ProdectController extends GetxController {
     print("------------nn-");
 
     if (indexWanted >= 0) {
-      // final refs = FirebaseStorage.instance
-      //     .ref()
-      //     .child("productImage")
-      //     .child(productNameControlller.text + ".jpg");
-      await prodectRefUser.doc(authController.displayUserEmail.value).collection(
-          "Favorite").doc(prodect.productNumber).delete();
+      await prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("Favorite")
+          .doc(prodect.productNumber)
+          .delete();
 
       Get.snackbar("", "deleted successfully..");
-     // Get.toNamed(Routes.cartScreen);
+      update();
     } else {
       final ref = FirebaseStorage.instance
           .ref()
@@ -258,7 +234,7 @@ class ProdectController extends GetxController {
           .collection("Favorite")
           .doc(prodect.productNumber);
       prodect.productNumber = comicRef.id;
-      // id = prodect.productNumber;
+
       final data = prodect.toJson(); // insert to fiserbase
       print("----- ${comicRef.id}");
       print("------------- ${prodect.productNumber}");
@@ -271,44 +247,31 @@ class ProdectController extends GetxController {
           Get.snackbar("Error", "something went wrong");
         }
         update();
-      }
-      )
-          .catchError((error) {
+      }).catchError((error) {
         Get.snackbar("Error", "something went wrong");
       });
     }
-
-
-
-
-
   }
 
   bool isFave(String productId) {
     print("------&&&&&&$productId");
-print(productNumberController.text);
+    print(productNumberController.text);
 
-    return prodectsFav.any((element) =>
-      element.productNumber == productId);
-
+    return prodectsFav.any((element) => element.productNumber == productId);
   }
-
 
   Future<void> deleteDataFav(String nameId) async {
-    await prodectRefUser.doc(authController.displayUserEmail.value).collection(
-        "Favorite").doc(nameId).delete();
+    await prodectRefUser
+        .doc(authController.displayUserEmail.value)
+        .collection("Favorite")
+        .doc(nameId)
+        .delete();
+    update();
   }
 
-
-
- var orders = {}.obs;
-
+  var orders = {}.obs;
 
   Future<void> addProdectCart(Prodect prodect) async {
-
-
-
-
     var indexWanted = carts.indexWhere((element) {
       print("-----------------${element.productNumber}");
       return element.productNumber == prodect.productNumber;
@@ -324,7 +287,6 @@ print(productNumberController.text);
           .doc(prodect.productNumber.toString())
           .delete();
       Get.snackbar("", "deleted successfully..");
-      // Get.toNamed(Routes.mainScreen);
     } else {
       final comicRef = prodectRefUser
           .doc(authController.displayUserEmail.value)
@@ -337,7 +299,7 @@ print(productNumberController.text);
       comicRef.set(data).whenComplete(() {
         if (comicRef.id == prodect.productNumber.toString()) {
           Get.snackbar("", "Added successfully..");
-          // Get.toNamed(Routes.mainScreen);
+
         } else {
           Get.snackbar("Error", "something went wrong");
         }
@@ -345,62 +307,13 @@ print(productNumberController.text);
         Get.snackbar("Error", "something went wrong");
       });
     }
-    // final ref = FirebaseStorage.instance
-    //     .ref()
-    //     .child("productImage")
-    //     .child(productNameControlller.text + ".jpg");
-    // var refs = FirebaseFirestore.instance.collection('users').doc(
-    //     authController.displayUserEmail.value).collection("cart").doc(
-    //     prodect.productName);
-    //
-    // prodect.productNumber = prodectRef.id;
-    // // prodect.imageUrl = imgUrl.toString();
-    // final data = prodect.toJson(); // insert to fiserbase
-    // refs.set(data).whenComplete(() {
-    //   clearController();
-    //   Get.snackbar("", "Added successfully..");
-    //   if (orders.containsKey(prodect)) {
-    //     orders[prodect] += 1;
-    //   } else {
-    //     // Get.snackbar("Error", "Somthing went wrong ");
-    //     orders[prodect] = 1;
-    //   }
-    //
-    //
-    //   // Get.offNamed(Routes.stockScreen);
-    //   update();
-    // }).catchError((error) {
-    //   Get.snackbar("Error", "something went wrong");
-    // });
   }
-
 
   Future<void> deleteDataCart(String nameId) async {
-    await prodectRefUser.doc(authController.displayUserEmail.value).collection(
-        "cart").doc(nameId).delete();
+    await prodectRefUser
+        .doc(authController.displayUserEmail.value)
+        .collection("cart")
+        .doc(nameId)
+        .delete();
   }
-
-  // get productSubTotal =>
-  //     orders.entries.map((e) => e.key.price * e.value).toList();
-
-  // get total =>
-  //     orders.entries
-  //         .map((e) => e.key.price * e.value)
-  //         .toList()
-  //         .reduce((value, element) => value + element)
-  //         .toStringAsFixed(2);
-  //
-  //
-  // int quantity() {
-  //   if (orders.isEmpty) {
-  //     return 0;
-  //   } else {
-  //     return orders.entries
-  //         .map((e) => e.value)
-  //         .toList()
-  //         .reduce((value, element) => value + element);
-  //   }
-  // }
-
-
 }

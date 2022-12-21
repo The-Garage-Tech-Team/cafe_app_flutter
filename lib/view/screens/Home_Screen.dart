@@ -3,10 +3,10 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../View/widgets/textUtils.dart';
+
 import '../../logic/Controller/prodect_controller.dart';
 import '../../model/product.dart';
-import '../../utils/theme.dart';
+
 import '../widgets/cart/cart_item_customer.dart';
 
 

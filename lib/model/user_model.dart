@@ -36,8 +36,3 @@ class UserModel {
   }
 }
 
-//
-// class Images{
-//   String? imageProf;
-//
-// }

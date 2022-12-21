@@ -9,9 +9,7 @@ import 'firebase_options.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -21,61 +19,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-
-
-
-
-        return GetMaterialApp(
-          debugShowCheckedModeBanner: false,
-          theme: ThemeData(fontFamily: 'Ubuntu'),
-
-
-         initialRoute:
-          FirebaseAuth.instance.currentUser != null ||
+    return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(fontFamily: 'Ubuntu'),
+      initialRoute: FirebaseAuth.instance.currentUser != null ||
               GetStorage().read<bool>("auth") == true
-              ?
-          Routes.main_Screen
-         :
-          AppRoutes.welcome
-         ,
-
-
-
-          //  initialRoute: Routes.loginScreen,
-
-          getPages: AppRoutes.routes,
-          // initialBinding: AuthBinding(),
-        );
-
-
+          ? Routes.main_Screen
+          : AppRoutes.welcome,
+      getPages: AppRoutes.routes,
+    );
   }
 }
-//
-//
-//     return Sizer(
-//       child: GetMaterialApp(
-//            title: 'shope',
-//        debugShowCheckedModeBanner: false,
-//
-//           // locale: Locale(GetStorage().read<String>("lang").toString()),
-//              // translations: LocaliztionApp(),
-//            // fallbackLocale: Locale(ene),
-//            //  theme: ThemesApp.light,
-//            // darkTheme: ThemesApp.dark,
-//          // themeMode: ThemeControler().themeDataGet,
-//       //
-//       //
-//        initialRoute:AppRoutes.welcome,
-//        // FirebaseAuth.instance.currentUser != null ||
-//       //           // GetStorage().read<bool>('auth') == true ? AppRoutes.mainScreen : AppRoutes.welcome,
-//            getPages: AppRoutes.routes
-//
-//
-//         ),
-//     );
-//
-//   }
-// }
-
-
-

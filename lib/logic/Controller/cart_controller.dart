@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 
 import '../../routes/routs.dart';
 import '../../utils/theme.dart';
@@ -120,7 +120,7 @@ class CartController extends GetxController{
 
 
 
-  var _product = {}.obs;
+
 
   void addFirebaseCart(Prodect prodect){
 

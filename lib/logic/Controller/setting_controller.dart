@@ -59,9 +59,7 @@ class SettingController extends GetxController {
           .collection("users")
           .doc(authController.displayUserEmail.value);
 
-      // await doc.update({"image": imagePath}).whenComplete(() =>
-      // imagePath== null );
-      // print(imagePath);
+
        authController.displayUserPhoto.value=imagePath!;
 
     } catch (error) {

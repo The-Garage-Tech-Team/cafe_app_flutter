@@ -1,11 +1,8 @@
-
-
 import 'package:cafe_app_project/logic/Bindings/main_binding.dart';
 import 'package:cafe_app_project/view/screens/main_screen.dart';
 import 'package:cafe_app_project/view/screens/setting/settingBar.dart';
-import 'package:cafe_app_project/view/screens/table_number.dart';
-import 'package:get/get.dart';
 
+import 'package:get/get.dart';
 
 import '../View/Screens/admin/stock_screen.dart';
 import '../logic/Bindings/auth_bindig.dart';
@@ -16,27 +13,24 @@ import '../view/screens/auth/login_screen.dart';
 import '../view/screens/auth/singup.dart';
 import '../view/screens/cart_screen.dart';
 
-
 import '../view/screens/setting/edit_profile_screen.dart';
 import '../view/screens/setting/profile.dart';
 
 import '../view/screens/setting/settings_screen.dart';
 import '../view/screens/welcome_screen.dart';
 
-class AppRoutes{
+class AppRoutes {
 //  initialRoute
-  static const welcome = Routes.welcomeScreen ;
-  static const sigup = Routes.signupScreen ;
-  static const login = Routes.loginScreen ;
-  static const forget_pass  = Routes.forgetPasswordScreen;
-  static const tabelNumber  = Routes.tabel_number;
-  static const mainScreen  = Routes.main_Screen;
-  static const cart_Screen  = Routes.cartScreen;
+  static const welcome = Routes.welcomeScreen;
+  static const sigup = Routes.signupScreen;
+  static const login = Routes.loginScreen;
+  static const forget_pass = Routes.forgetPasswordScreen;
+  static const tabelNumber = Routes.tabel_number;
+  static const mainScreen = Routes.main_Screen;
+  static const cart_Screen = Routes.cartScreen;
 
   static const stock = Routes.stockScreen;
   static const addProduct = Routes.addProductForm;
-  // static const profle_screen = Routes.profile;
-  // static const customerHome = Routes.customerHome;
 
   static const edit = Routes.editProfileScreen;
   static const profile = Routes.profileScreen;
@@ -44,10 +38,7 @@ class AppRoutes{
   static const setting_bar = Routes.settingBar;
 //getPages
 
-  static final routes =[
-
-
-
+  static final routes = [
     GetPage(
       name: Routes.welcomeScreen,
       page: () => WelcomeScreen(),
@@ -55,51 +46,40 @@ class AppRoutes{
     GetPage(
         name: Routes.loginScreen,
         page: () => Login_Screen(),
-        binding: AuthBinding()
-    ),
+        binding: AuthBinding()),
     GetPage(
         name: Routes.signupScreen,
         page: () => SignUpScreen(),
-        binding: AuthBinding()
-    ),
-    GetPage(
-        name: Routes.tabel_number,
-        page: () => Table_Number_screen(),
-        binding: AuthBinding()
-    ),
+        binding: AuthBinding()),
+
     GetPage(
         name: Routes.forgetPasswordScreen,
         page: () => ForgotPasswordScreen(),
-        binding: AuthBinding()
-    ),
+        binding: AuthBinding()),
     GetPage(
-        name: Routes.main_Screen,
-        page: () => MainScreen(),
-      bindings: [AuthBinding(),MainBindng(),ProductBinding(),
-        ],
+      name: Routes.main_Screen,
+      page: () => MainScreen(),
+      bindings: [
+        AuthBinding(),
+        MainBindng(),
+        ProductBinding(),
+      ],
     ),
 
+    GetPage(
+        name: Routes.stockScreen,
+        page: () => StockScreen(),
+        binding: ProductBinding()),
 
-    // GetPage(name: Routes.profile, page: () => Profile_Screen(),
-    //    ),
-
-    GetPage(name: Routes.stockScreen, page: () => StockScreen(),
-    binding :ProductBinding()),
-
-    GetPage(name: Routes.addProductForm, page: () => AddProductFromScreen(),
-    binding: ProductBinding()),
+    GetPage(
+        name: Routes.addProductForm,
+        page: () => AddProductFromScreen(),
+        binding: ProductBinding()),
     // GetPage(name: Routes.customerHome, page: () => CustomerHome()),
 
+    GetPage(name: Routes.profileScreen, page: () => ProfileScreen()),
 
-
-
-    GetPage(
-        name: Routes.profileScreen,
-        page: () => ProfileScreen()),
-
-    GetPage(
-        name: Routes.editProfileScreen,
-        page: () => EditProfileScreen()),
+    GetPage(name: Routes.editProfileScreen, page: () => EditProfileScreen()),
 
     GetPage(
       name: Routes.settingsScreen,
@@ -109,44 +89,16 @@ class AppRoutes{
     //
     //
     GetPage(
-      name: Routes.cartScreen ,
+      name: Routes.cartScreen,
       page: () => CartScreen(),
-      bindings:[  AuthBinding(),ProductBinding()],
-
+      bindings: [AuthBinding(), ProductBinding()],
     ),
 
-    GetPage(
-        name: Routes.settingBar,
-        page: () => SettingBar()),
-
-    //
-    //
-    // ),
-    // GetPage(
-    //     name: Routes.forgetPasswordScreen ,
-    //     page: () => ForgetPasswordScreen(),
-    //     binding: AuthBinding()
-    // ),
-    //
-    // GetPage(
-    //   name: Routes.mainScreen ,
-    //   page: () => MainScreen(),
-    //   bindings: [AuthBinding(),MainBindng(),
-    //     ProductBinding(),
-
-    //
-    // ],
-
-    // ),
-
+    GetPage(name: Routes.settingBar, page: () => SettingBar()),
   ];
-
-
 }
 
-
 class Routes {
-
   static const welcomeScreen = '/WelcomeScreen';
   static const loginScreen = '/Login_Screen';
   static const signupScreen = '/SignUpScreen';
@@ -159,9 +111,6 @@ class Routes {
 
   static const addProductForm = '/AddProductFromScreen';
   static const editProduct = '/EditProductScreen';
-  // static const profile = '/Profile_Screen';
-
-
 
   static const profileScreen = '/ProfileScreen';
   static const editProfileScreen = '/EditProfileScreen';

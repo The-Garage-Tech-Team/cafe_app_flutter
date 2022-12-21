@@ -13,7 +13,6 @@ class AddProductFromScreen extends StatelessWidget {
 
   final controller = Get.find<ProdectController>();
 
-  // final controller = Get.find<AddProductController>();
   final myKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
@@ -92,7 +91,9 @@ class AddProductFromScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextUtils(
-                  text: 'Product Name', fointSize:15, fontWeight: FontWeight.w300,
+                  text: 'Product Name',
+                  fointSize: 15,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black26,
                 ),
                 SizedBox(
@@ -118,7 +119,9 @@ class AddProductFromScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextUtils(
-                  text: 'Category', fointSize:15, fontWeight: FontWeight.w300,
+                  text: 'Category',
+                  fointSize: 15,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black26,
                 ),
                 SizedBox(
@@ -144,7 +147,9 @@ class AddProductFromScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextUtils(
-                  text: 'Quantity', fointSize:15, fontWeight: FontWeight.w300,
+                  text: 'Quantity',
+                  fointSize: 15,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black26,
                 ),
                 SizedBox(
@@ -171,7 +176,9 @@ class AddProductFromScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextUtils(
-                  text: 'Price',fointSize:15, fontWeight: FontWeight.w300,
+                  text: 'Price',
+                  fointSize: 15,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black26,
                 ),
                 SizedBox(
@@ -198,7 +205,9 @@ class AddProductFromScreen extends StatelessWidget {
                   height: 16,
                 ),
                 TextUtils(
-                  text: 'Description',fointSize:15, fontWeight: FontWeight.w300,
+                  text: 'Description',
+                  fointSize: 15,
+                  fontWeight: FontWeight.w300,
                   color: Colors.black26,
                 ),
                 SizedBox(

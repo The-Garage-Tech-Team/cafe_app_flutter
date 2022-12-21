@@ -17,67 +17,67 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-      Obx(()
-    {
-      return Expanded(
-        child: controller.searchList.isEmpty &&
-            controller.searchTextController.text.isNotEmpty
-            ? Get.isDarkMode
-            ? Icon(
-          Icons.search_off_outlined,
-          size: 150,
-          color: Colors.grey,
-        )
-            : Icon(
-          Icons.search_off_outlined,
-          size: 150,
-          color: Colors.white,
-        )
-            : GridView.builder(
-          itemCount: controller.searchList.isEmpty
-              ? controller.prodects.length
-              : controller.searchList.length,
-          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
-            childAspectRatio: 0.8,
-            mainAxisSpacing: 9.0,
-            crossAxisSpacing: 6.0,
-            maxCrossAxisExtent: 200,
-          ),
-          itemBuilder: (context, index) {
-            if (controller.searchList.isEmpty) {
-              return buildCardItems(
-                  catagory: controller.prodects[index].category,
-                  productName: controller.prodects[index].productName,
-                  image: controller.prodects[index].imageUrl,
-                  price: controller.prodects[index].price,
-                  productId:
-                  controller.prodects[index].productNumber.toString(),
-                  productModels: controller.prodects[index],
+     GetBuilder<ProdectController>(builder: (_){
+       return Expanded(
+         child: controller.searchList.isEmpty &&
+             controller.searchTextController.text.isNotEmpty
+             ? Get.isDarkMode
+             ? Icon(
+           Icons.search_off_outlined,
+           size: 150,
+           color: Colors.grey,
+         )
+             : Icon(
+           Icons.search_off_outlined,
+           size: 150,
+           color: Colors.white,
+         )
+             : GridView.builder(
+           itemCount: controller.searchList.isEmpty
+               ? controller.prodects.length
+               : controller.searchList.length,
+           gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+             childAspectRatio: 0.8,
+             mainAxisSpacing: 9.0,
+             crossAxisSpacing: 6.0,
+             maxCrossAxisExtent: 200,
+           ),
+           itemBuilder: (context, index) {
+             if (controller.searchList.isEmpty) {
+               return buildCardItems(
+                   catagory: controller.prodects[index].category,
+                   productName: controller.prodects[index].productName,
+                   image: controller.prodects[index].imageUrl,
+                   price: controller.prodects[index].price,
+                   productId:
+                   controller.prodects[index].productNumber.toString(),
+                   productModels: controller.prodects[index],
 
-                  onTap: () {
-                    // Get.to(() => ProductDetailsScreen(
-                    //   productModels: controller.productList[index],
-                    // ));k
-                  });
-            } else {
-              return buildCardItems(
-                  catagory: controller.searchList[index].category,
-                  productName: controller.searchList[index].productName,
-                  image: controller.searchList[index].imageUrl,
-                  price: controller.searchList[index].price,
-                  productId: controller.searchList[index].productNumber
-                      .toString(),
-                  productModels: controller.searchList[index],
-                  onTap: () {
-                    // Get.to(() => ProductDetailsScreen(
-                    //   productModels: controller.searchList[index],
-                    // ));
-                  });
-            }
-          },
-        ),
-      );
-    });
+                   onTap: () {
+                     // Get.to(() => ProductDetailsScreen(
+                     //   productModels: controller.productList[index],
+                     // ));k
+                   });
+             } else {
+               return buildCardItems(
+                   catagory: controller.searchList[index].category,
+                   productName: controller.searchList[index].productName,
+                   image: controller.searchList[index].imageUrl,
+                   price: controller.searchList[index].price,
+                   productId: controller.searchList[index].productNumber
+                       .toString(),
+                   productModels: controller.searchList[index],
+                   onTap: () {
+                     // Get.to(() => ProductDetailsScreen(
+                     //   productModels: controller.searchList[index],
+                     // ));
+                   });
+             }
+           },
+         ),
+       );
+     });
+
   }
 
   Widget buildCardItems(
@@ -113,6 +113,7 @@ class CardItem extends StatelessWidget {
             ],
           ),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
 
               Container(
@@ -157,8 +158,12 @@ class CardItem extends StatelessWidget {
               // Obx(
               //       () =>
                         Row(
+
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+
                   children: [
+
                     IconButton(
                       onPressed: () async {
 
@@ -167,6 +172,7 @@ class CardItem extends StatelessWidget {
                         await controller.addProdectFav(productModels );
                       },
                       icon:
+
                       controller.isFave(productModels.productNumber!)
                           ?  Icon(
                         Icons.favorite,
@@ -189,7 +195,7 @@ class CardItem extends StatelessWidget {
                     ),
                   ],
                 ),
-             // ),
+       // ),
             ],
           ),
         ),

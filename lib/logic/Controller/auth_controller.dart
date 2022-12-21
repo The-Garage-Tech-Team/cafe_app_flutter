@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 
 import 'package:cafe_app_project/logic/Controller/main_controller.dart';
@@ -9,11 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../model/user_model.dart';
-
-
 
 class AuthController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -34,7 +29,7 @@ class AuthController extends GetxController
   var displayUserEmail = ''.obs;
   var displayDescription = ''.obs;
 
-  // GoogleSignIn googleSign = GoogleSignIn(scopes: ['email']);
+
 
   FirebaseFirestore firestore = FirebaseFirestore.instance;
 
@@ -46,10 +41,7 @@ class AuthController extends GetxController
   var authState = ''.obs;
   String verificationId = '';
 
-  // Timer? timer;
-  // int remainSec = 1;
-  // var time = '00:00'.obs;
-  var isbuttonDisable = false;
+ var isbuttonDisable = false;
 
   @override
   void onInit() {
@@ -66,15 +58,13 @@ class AuthController extends GetxController
 
   @override
   void onReady() {
-    // startTimer(60);
+
     super.onReady();
   }
 
   @override
   void onClose() {
-    // if (timer != null) {
-    //   timer!.cancel();
-    // }
+
     super.onClose();
   }
 
@@ -115,23 +105,17 @@ class AuthController extends GetxController
         displayUserPhoto.value = docData['image'];
       });
 
-      // showDialog(
-      //   context: context,
-      //   builder: (context) {
-      //     return CircularProgressIndicator();
-      //   },
-      // );
+
 
       isSignedIn = true;
       authBox.write("auth", isSignedIn);
       update();
 
       // Get.offNamed(Routes.tabel_number);
-      if (displayUserEmail.value == "na@n.com"){
+      if (displayUserEmail.value == "na@n.com") {
         Get.offNamed(Routes.stockScreen);
-      }
-      else{
-        MainController.currentIndex.value=0;
+      } else {
+        // MainController.currentIndex.value = 0;
 
         Get.offNamed(Routes.main_Screen);
       }
@@ -184,37 +168,7 @@ class AuthController extends GetxController
           colorText: Colors.white);
     }
   }
-  //
-  // Future<void> loginUsinggoogle() async {
-  //   try {
-  //     final GoogleSignInAccount? googleUser = await googleSign.signIn();
-  //     if (googleUser != null) {
-  //       GoogleSignInAuthentication signInAuthentication =
-  //       await googleUser.authentication;
-  //       final AuthCredential credential = GoogleAuthProvider.credential(
-  //           idToken: signInAuthentication.idToken,
-  //           accessToken: signInAuthentication.accessToken);
-  //       await auth.signInWithCredential(credential);
-  //     }
-  //     displayUserName.value = googleUser!.displayName!;
-  //     displayUserName.value =
-  //         (userProfile != null ? userProfile!.displayName : "") ?? "";
-  //     displayUserEmail.value = googleUser.email;
-  //     displayUserPhoto.value = googleUser.photoUrl!;
-  //
-  //     isSignedIn = true;
-  //
-  //     update();
-  //     authBox.write("auth", isSignedIn);
-  //
-  //     // Get.offNamed(Routes.tabel_number);
-  //   } catch (error) {
-  //     Get.snackbar('Error!', error.toString(),
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white);
-  //   }
-  // }
+
 
   void signOut() async {
     try {
@@ -227,7 +181,7 @@ class AuthController extends GetxController
       isSignedIn = false;
       authBox.remove("auth");
       update();
-     Get.offNamed(Routes.welcomeScreen);
+      Get.offNamed(Routes.welcomeScreen);
     } catch (e) {
       Get.snackbar("Error!", e.toString(),
           snackPosition: SnackPosition.BOTTOM,
@@ -253,7 +207,7 @@ class AuthController extends GetxController
       });
 
       DocumentReference doc =
-      FirebaseFirestore.instance.collection("users").doc(email);
+          FirebaseFirestore.instance.collection("users").doc(email);
 
       doc.set({
         "email": email,
@@ -295,121 +249,7 @@ class AuthController extends GetxController
     }
   }
 
-  // verifyPhone({required String phone, required String password}) {
-  //   try {
-  //     auth.verifyPhoneNumber(
-  //
-  //
-  //       timeout: Duration(seconds: 60),
-  //
-  //       phoneNumber: "+966" + phone,
-  //       verificationCompleted: (PhoneAuthCredential credential) async {
-  //         await auth.signInWithCredential(credential);
-  //       },
-  //       verificationFailed: (error) {
-  //         String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
-  //         String message = '';
-  //         if (error.code == 'invalid-phone-number') {
-  //           message = 'No user found for that phone Number.';
-  //         } else if (error.code == 'wrong-password') {
-  //           message = 'Wrong Password ';
-  //
-  //         } else {
-  //           Get.snackbar('Error!', error.toString(),
-  //               snackPosition: SnackPosition.TOP,
-  //               backgroundColor: Colors.red,
-  //               colorText: Colors.white);
-  //         }
-  //       },
-  //       codeSent: (String id, int? resendToken) {
-  //         this.verificationId = id;
-  //         authState.value = "login Success";
-  //       },
-  //       codeAutoRetrievalTimeout: (String id) {
-  //         this.verificationId = id;
-  //       },
-  //     );
-  //   } catch (error) {
-  //     Get.snackbar('Error!', error.toString(),
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white);
-  //   }
-  // }
 
-  // verifyOTP(String otp) async {
-  //   try {
-  //     var credential = await auth.signInWithCredential(
-  //         PhoneAuthProvider.credential(
-  //             verificationId: this.verificationId, smsCode: otp));
-  //
-  //     if (credential.user != null) {
-  //       // Get.offNamed(Routes.customerHome);
-  //     }
-  //   } catch (error) {
-  //     Get.snackbar('Error !', error.toString(),
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white);
-  //   }
-  // }
-
-  // reSendOTP({required String phone}) async {
-  //   try {
-  //     await auth.verifyPhoneNumber(
-  //       timeout: Duration(seconds: 120),
-  //       phoneNumber: "+966" + phone,
-  //       verificationCompleted: (AuthCredential authCredential) {},
-  //       verificationFailed: (error) {
-  //         String title = error.code.replaceAll(RegExp('-'), ' ').capitalize!;
-  //         String message = '';
-  //         if (error.code == 'user-not-found') {
-  //           message = 'No user found for that phone Number.';
-  //         } else {
-  //           message = error.message.toString();
-  //         }
-  //         Get.snackbar(title, message,
-  //             snackPosition: SnackPosition.TOP,
-  //             backgroundColor: Colors.red,
-  //             colorText: Colors.white);
-  //       },
-  //       codeSent: (String id, int? resendToken) {
-  //         this.verificationId = id;
-  //         authState.value = "Resend Success";
-  //       },
-  //       codeAutoRetrievalTimeout: (String id) {
-  //         this.verificationId = id;
-  //       },
-  //     );
-  //   } catch (error) {
-  //     Get.snackbar('Error!', error.toString(),
-  //         snackPosition: SnackPosition.TOP,
-  //         backgroundColor: Colors.red,
-  //         colorText: Colors.white);
-  //   }
-  //
-  //
-  //   update();
-  // }
-
-
-  // Future<void> googleSignUpApp() async {
-  //   try {
-  //     final googleUser = await googleSign.signIn();
-
-  //     isSignedIn = true;
-  //     update();
-  //     Get.offNamed(Routes.profileScreen);
-  //   } catch (error) {
-  //     Get.snackbar(
-  //       'Error!',
-  //       error.toString(),
-  //       snackPosition: SnackPosition.TOP,
-  //       backgroundColor: Colors.red[400],
-  //       colorText: Colors.white,
-  //     );
-  //   }
-  // }
 
   Future updateFields(TextEditingController value, TextEditingController value1,
       String imageUrl) async {
@@ -449,25 +289,6 @@ class AuthController extends GetxController
       );
     }
   }
-  //
-  // void startTimer(int sec) {
-  //   const duration = Duration(seconds: 1);
-  //   remainSec = sec;
-  //   timer = Timer.periodic(duration, (timer) {
-  //     if (remainSec == 0) {
-  //       timer.cancel();
-  //
-  //       buttonDisable();
-  //     } else {
-  //       int min = (remainSec ~/ 60);
-  //       int sec = (remainSec % 60);
-  //       time.value = min.toString().padLeft(2, '0') +
-  //           ':' +
-  //           sec.toString().padLeft(2, '0');
-  //       remainSec--;
-  //     }
-  //   });
-  // }
 
   void buttonDisable() {
     isbuttonDisable = !isbuttonDisable;
@@ -477,7 +298,7 @@ class AuthController extends GetxController
   Future getUserFromDB(String uid) async {
     try {
       var userData =
-      await FirebaseFirestore.instance.collection("users").doc(uid).get();
+          await FirebaseFirestore.instance.collection("users").doc(uid).get();
       var map = userData.data();
       //debugPrint(map!['email']);
       return UserModel.fromData(userData.data());

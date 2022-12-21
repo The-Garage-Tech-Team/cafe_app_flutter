@@ -31,9 +31,7 @@ class ProductTextField extends StatelessWidget {
       height: height,
       child: TextFormField(
           controller: controller,
-          //القيم واضحه او مخفيه
           obscureText: obscureText,
-          //  تغير لون المؤشر
           cursorColor: Colors.black,
           keyboardType: keyboardType,
           maxLength: maxLength,
@@ -51,15 +49,13 @@ class ProductTextField extends StatelessWidget {
             //عرض تعبئه text_field
             filled: true,
             enabledBorder: OutlineInputBorder(
-              //لون اطار text_field
               borderSide: BorderSide(
                 color: Colors.grey.withOpacity(0.2),
               ),
               borderRadius: BorderRadius.circular(4),
             ),
-            //وظيفه focus لما يتفعل عند الكتابه يكون بدون اطار
+
             focusedBorder: OutlineInputBorder(
-              // لون اطار text_field
               borderSide: const BorderSide(
                 color: Colors.grey,
               ),

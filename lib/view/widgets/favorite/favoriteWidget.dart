@@ -84,13 +84,7 @@ class FavoriteInStock extends StatelessWidget {
                                 fontSize: 16,
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromRGBO(0, 0, 0, 1))),
-                        // Spacer(),
-                        // Switch(
-                        //   value: true,
-                        //   onChanged: (value) {},
-                        //   activeTrackColor: Color.fromRGBO(67, 24, 255, 1),
-                        //   activeColor: Colors.white,
-                        // ),
+
                       ]),
                     ],
                   ),
