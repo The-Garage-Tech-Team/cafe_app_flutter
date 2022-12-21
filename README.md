@@ -1,4 +1,4 @@
-# cafe_app_project(Firebase and getx)
+# cafe_app (Firebase and getx)
 
 A new Flutter project.
 
