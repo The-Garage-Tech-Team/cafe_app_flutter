@@ -1,6 +1,6 @@
 # cafe_app (Firebase and getx)
 
-A new Flutter project.
+This is an cafe Application developed using FlutterFire (Flutter+Firebase). I have tried to collect  the some features  into this application  It uses Flutter Framework for App Frontend and Backend, and Firebase as server maintaining Databases and Storage requirments of the app. It uses Firebase Authentification, Firebase Cloud Firestore, Firebase Storage.
 
 ## Getting Started
 
