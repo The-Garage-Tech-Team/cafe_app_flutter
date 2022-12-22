@@ -1,31 +1,26 @@
+import 'package:cafe_app_project/logic/Controller/auth_controller.dart';
 
-
-
-
-
-import 'package:cafe_app_project/model/order_model.dart';
 import 'package:cafe_app_project/model/product.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-
 import '../../routes/routs.dart';
 import '../../utils/theme.dart';
 
-class CartController extends GetxController{
+class CartController extends GetxController {
   final prodectRef = FirebaseFirestore.instance;
   var productsMap = {}.obs;
+  final authController = Get.put(AuthController());
 
+  final prodectRefUser = FirebaseFirestore.instance.collection('users');
   void addProductToCart(Prodect productModels) {
     if (productsMap.containsKey(productModels)) {
       productsMap[productModels] += 1;
     } else {
       productsMap[productModels] = 1;
     }
-
-
   }
 
   void removeProductsFarmCart(Prodect productModels) {
@@ -35,9 +30,6 @@ class CartController extends GetxController{
     } else {
       productsMap[productModels] -= 1;
     }
-
-
-
   }
 
   void removeOneProduct(Prodect productModels) {
@@ -95,39 +87,82 @@ class CartController extends GetxController{
     }
   }
 
-
-  //
-
-  late TextEditingController tableNumber ;
-
-  Future<void> addProdect(CartModel cartModel) async {
-
-    // we nede Refrence to firebase
-    final _prodectRef = prodectRef.collection('ORDER').doc(cartModel.tableNumber);
-    cartModel.tableNumber = _prodectRef.id;
-    // prodectRef.id = cartModel.tableNumber;
-    final data = cartModel.toJson(); // insert to fiserbase
-    _prodectRef.set(data).whenComplete(() {
-      // clearController();
-      Get.snackbar("", "Added successfully..");
-      // Get.to(StockScreen());
-      update();
-    }).catchError((error) {
-      Get.snackbar("Error", "something went wrong");
-    });
-  }
-
-
-
-
-
-
-  void addFirebaseCart(Prodect prodect){
-
+  void addFirebaseCart(Prodect prodect) {
     if (productsMap.containsKey(prodect)) {
       productsMap[prodect] += 1;
     } else {
       productsMap[prodect] = 1;
     }
+  }
+
+  var carts = <CartModels>[].obs;
+  // var orders = {}.obs;
+
+  Future<void> addProdectCart(Prodect prodect) async {
+    var indexWanted = carts.indexWhere((element) {
+      print("-----------------${element.productNumber}");
+      return element.productNumber == prodect.productNumber;
+    });
+    print("------------- ${prodect.productNumber}");
+    print(indexWanted);
+    print("-------------");
+
+    if (indexWanted >= 0) {
+      await prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("carts")
+          .doc(prodect.productNumber.toString())
+          .delete();
+      Get.snackbar("", "deleted successfully..");
+    } else {
+      final comicRef = prodectRefUser
+          .doc(authController.displayUserEmail.value)
+          .collection("carts")
+          .doc(prodect.productNumber.toString());
+      final data = prodect.toJson(); // insert to fiserbase
+      print("----- ${comicRef.id}");
+      print("------------- ${prodect.productNumber}");
+
+      comicRef.set(data).whenComplete(() {
+        if (comicRef.id == prodect.productNumber.toString()) {
+          Get.snackbar("", "Added successfully..");
+        } else {
+          Get.snackbar("Error", "something went wrong");
+        }
+      }).catchError((error) {
+        Get.snackbar("Error", "something went wrong");
+      });
+    }
+  }
+
+  late Prodect prodect;
+
+  Future<void> deleteDataCart(String nameId) async {
+    await prodectRefUser
+        .doc(authController.displayUserEmail.value)
+        .collection("cart")
+        .doc(nameId)
+        .delete();
+  }
+
+  var productQuantity = ''.obs;
+
+  Future<void> updateProduct(quntity) async {
+    productQuantity.value;
+
+    var refUpdate = prodectRefUser
+        .doc(authController.displayUserEmail.value)
+        .collection("carts")
+        .doc(prodect.productNumber.toString());
+    refUpdate.update({
+      "quantity": productQuantity.value,
+    }).whenComplete(() {
+      print("update done");
+      Get.snackbar("", "Update successfully..");
+
+      update();
+      Get.offNamed(Routes.stockScreen);
+    });
+
   }
 }

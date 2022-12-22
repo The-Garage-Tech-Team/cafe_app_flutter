@@ -21,6 +21,7 @@ class CartProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Container(
       margin: const EdgeInsets.only(left: 20, right: 20, top: 20),
       height: 130,
@@ -101,9 +102,14 @@ class CartProductCard extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
+
                   IconButton(
                     onPressed: () {
+
                       controller.addProductToCart(productModels);
+                   controller.updateProduct(quantity);
+print (";ll");
+                      print (quantity);
                     },
                     icon: Icon(
                       Icons.add_circle,

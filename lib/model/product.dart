@@ -23,7 +23,7 @@ class Prodect {
   String? productNumber;
   final String productName;
   final String category;
-  final int quantity;
+  late final int quantity;
   final double price;
   final String description;
   String imageUrl;

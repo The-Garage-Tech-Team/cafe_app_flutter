@@ -9,7 +9,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+
 import 'package:image_picker/image_picker.dart';
 
 class ProdectController extends GetxController {
@@ -269,51 +269,4 @@ class ProdectController extends GetxController {
     update();
   }
 
-  var orders = {}.obs;
-
-  Future<void> addProdectCart(Prodect prodect) async {
-    var indexWanted = carts.indexWhere((element) {
-      print("-----------------${element.productNumber}");
-      return element.productNumber == prodect.productNumber;
-    });
-    print("------------- ${prodect.productNumber}");
-    print(indexWanted);
-    print("-------------");
-
-    if (indexWanted >= 0) {
-      await prodectRefUser
-          .doc(authController.displayUserEmail.value)
-          .collection("carts")
-          .doc(prodect.productNumber.toString())
-          .delete();
-      Get.snackbar("", "deleted successfully..");
-    } else {
-      final comicRef = prodectRefUser
-          .doc(authController.displayUserEmail.value)
-          .collection("carts")
-          .doc(prodect.productNumber.toString());
-      final data = prodect.toJson(); // insert to fiserbase
-      print("----- ${comicRef.id}");
-      print("------------- ${prodect.productNumber}");
-
-      comicRef.set(data).whenComplete(() {
-        if (comicRef.id == prodect.productNumber.toString()) {
-          Get.snackbar("", "Added successfully..");
-
-        } else {
-          Get.snackbar("Error", "something went wrong");
-        }
-      }).catchError((error) {
-        Get.snackbar("Error", "something went wrong");
-      });
-    }
-  }
-
-  Future<void> deleteDataCart(String nameId) async {
-    await prodectRefUser
-        .doc(authController.displayUserEmail.value)
-        .collection("cart")
-        .doc(nameId)
-        .delete();
-  }
 }

@@ -155,8 +155,7 @@ class CardItem extends StatelessWidget {
                 ),
 
               ),
-              // Obx(
-              //       () =>
+
                         Row(
 
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -185,7 +184,7 @@ class CardItem extends StatelessWidget {
                     ),
                     IconButton(
                       onPressed: () {
-                        controller.addProdectCart(productModels);
+                        cartController.addProdectCart(productModels);
                         cartController.addProductToCart(productModels);
                       },
                       icon: const Icon(
