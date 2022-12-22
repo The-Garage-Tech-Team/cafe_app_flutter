@@ -5,10 +5,17 @@ This is an cafe Application developed using Flutter (getx+Firebase). I have trie
 ## ✨ Features
 
 ✔️ User Authentification .
+
 ✔️ As admin, add your Products.
+
 ✔️ View products added by admin.
-✔️As a user , s a user ,search for products by title 
-✔️As a user , Add/Remove products from the favorite products list. 
-✔️As a user , Cart management. 
-✔️ As a user , if you are a like of the art coffee ,you can save the photos in your profile .
+
+✔️As a user, s a user ,search for products by title 
+
+✔️As a user, add/remove products from the favorite products list.
+
+✔️As a user, Cart management. 
+
+✔️ As a user, if you are a like of the art coffee ,you can save the photos in your profile .
+
 ✔️Logout
