@@ -141,47 +141,42 @@ class Login_Email_Form extends StatelessWidget {
 
 
 
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextUtils(
-                  text: 'Don\'t  have account ?',
-                  fointSize: 13,
-                  fontWeight: FontWeight.normal,
-                  color: mainColor,
-                  underLine: TextDecoration.none),
-              SizedBox(
-                width: 5,
-              ),
-              TextButton(
-                onPressed: () {
-                  Get.offNamed(Routes.signupScreen);
-                },
-                style: TextButton.styleFrom(
-                    padding: EdgeInsets.zero,
-                    minimumSize: Size(50, 30),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    alignment: Alignment.centerLeft),
-                child: TextUtils(
-                    text: 'singup',
-                    fointSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: buttonColor,
-                    underLine: TextDecoration.underline),
-              ),
-            ],
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                TextUtils(
+                    text: 'Don\'t  have account ?',
+                    fointSize: 13,
+                    fontWeight: FontWeight.normal,
+                    color: mainColor,
+                    underLine: TextDecoration.none),
+                SizedBox(
+                  width: 5,
+                ),
+                TextButton(
+                  onPressed: () {
+                    Get.offNamed(Routes.signupScreen);
+                  },
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.zero,
+                      minimumSize: Size(50, 30),
+                      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                      alignment: Alignment.centerLeft),
+                  child: TextUtils(
+                      text: 'singup',
+                      fointSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: buttonColor,
+                      underLine: TextDecoration.underline),
+                ),
+              ],
+            ),
           ),
 
 
 
 
-          // Container_Under(
-          //   text: 'Dont hava an account?',
-          //   typetext: "Sign up",
-          //   onPressed: () {
-          //     // Get.offNamed(Routes.signup);
-          //   },
-          // ),
         ],
       ),
     );

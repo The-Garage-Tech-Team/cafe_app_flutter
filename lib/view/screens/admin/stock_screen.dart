@@ -21,7 +21,7 @@ class StockScreen extends StatelessWidget {
           iconTheme: IconThemeData(color: Colors.black),
           title: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
             Text(
-                "Book Store",
+                "Brown Star ",
               style: TextStyle(
                 color: Colors.black,
                 fontSize: 20,

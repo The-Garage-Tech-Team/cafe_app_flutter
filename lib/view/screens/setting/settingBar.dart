@@ -53,7 +53,7 @@ class SettingBar extends StatelessWidget {
                             shape: BoxShape.circle,
                             image: DecorationImage(
                               image: authController.displayUserPhoto.value == ""
-                                  ? const AssetImage("assets/images/avtar.png")
+                                  ? const AssetImage("images/avtar.png")
                                       as ImageProvider
                                   : NetworkImage(
                                       authController.displayUserPhoto.value,

@@ -48,11 +48,11 @@ class ProuctsInStock extends StatelessWidget {
                         child: Row(
                           children: [
                             Text(
-                              "${prodect[index].productNumber}",
+                              "${prodect[index].productName}",
                               style: TextStyle(
-                                  overflow: TextOverflow.ellipsis,
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.w700),
+                                  fontSize: 19,
+                                  fontWeight: FontWeight.w300,
+                                  color: Color.fromRGBO(0, 0, 0, 1)),
                             ),
                             Spacer(),
                             PopupMenu(
@@ -68,18 +68,10 @@ class ProuctsInStock extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 3,
+                        height: 14,
                       ),
-                      Text(
-                        "${prodect[index].productName}",
-                        style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.w300,
-                            color: Color.fromRGBO(0, 0, 0, 1)),
-                      ),
-                      SizedBox(
-                        height: 3,
-                      ),
+
+
                       Text(
                         "${prodect[index].category}",
                         style: TextStyle(
@@ -88,7 +80,7 @@ class ProuctsInStock extends StatelessWidget {
                             color: Color.fromRGBO(0, 0, 0, 1)),
                       ),
                       SizedBox(
-                        height: 3,
+                        height: 14,
                       ),
                       Text(
                         "${prodect[index].quantity}",
@@ -98,7 +90,7 @@ class ProuctsInStock extends StatelessWidget {
                             color: Color.fromRGBO(0, 0, 0, 1)),
                       ),
                       SizedBox(
-                        height: 3,
+                        height:14,
                       ),
                       Row(children: [
                         Text("\$${prodect[index].price}",
@@ -107,12 +99,7 @@ class ProuctsInStock extends StatelessWidget {
                                 fontWeight: FontWeight.w500,
                                 color: Color.fromRGBO(0, 0, 0, 1))),
                         Spacer(),
-                        Switch(
-                          value: true,
-                          onChanged: (value) {},
-                          activeTrackColor: Color.fromRGBO(67, 24, 255, 1),
-                          activeColor: Colors.white,
-                        ),
+
                       ]),
                     ],
                   ),

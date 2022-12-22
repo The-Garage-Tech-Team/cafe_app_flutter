@@ -42,6 +42,7 @@ class AppRoutes {
     GetPage(
       name: Routes.welcomeScreen,
       page: () => WelcomeScreen(),
+        binding: AuthBinding()
     ),
     GetPage(
         name: Routes.loginScreen,
