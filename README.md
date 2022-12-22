@@ -2,15 +2,13 @@
 
 This is an cafe Application developed using Flutter (getx+Firebase). I have tried to collect  the some features  into this application  It uses Flutter Framework for App Frontend and Backend, and Firebase as server maintaining Databases and Storage requirments of the app. It uses Firebase Authentification, Firebase Cloud Firestore, Firebase Storage.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+✔️ User Authentification .
+✔️ As admin, add your Products.
+✔️ View products added by admin.
+✔️As a user , s a user ,search for products by title 
+✔️As a user , Add/Remove products from the favorite products list. 
+✔️As a user , Cart management. 
+✔️ As a user , if you are a like of the art coffee ,you can save the photos in your profile .
+✔️Logout
