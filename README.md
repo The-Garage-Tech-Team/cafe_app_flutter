@@ -1,4 +1,4 @@
-# cafe_app (Firebase and getx)
+#Firebase and getx(Cafe app)
 
 ## OverView
 
