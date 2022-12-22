@@ -9,17 +9,17 @@ This is an cafe Application developed using Flutter (getx+Firebase). I have trie
 
 ✔️ User Authentification .
 
-✔️ As admin, add your Products.
+✔️ As admin, add your Products to firebasefirestore and firestorage database.
 
-✔️ View products added by admin.
+✔️ View products added by admin from firebasefirestore and firestorage database.
 
 ✔️As a user, s a user ,search for products by title 
 
-✔️As a user, add/remove products from the favorite products list.
+✔️As a user, add/remove products from the favorite products list from/to firebasefirestore and firestorage database.
 
 ✔️As a user, Cart management. 
 
-✔️ As a user, if you are a like of the art coffee ,you can save the photos in your profile .
+✔️ As a user, if you are a like of the art coffee ,you can save the photos in your profile to firebasefirestore and firestorage database .
 
 ✔️Logout
 
