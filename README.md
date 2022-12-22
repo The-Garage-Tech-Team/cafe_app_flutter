@@ -4,6 +4,7 @@
 
 This is an cafe Application developed using Flutter (getx+Firebase). I have tried to collect  the some features  into this application  It uses Flutter Framework for App Frontend and Backend, and Firebase as server maintaining Databases and Storage requirments of the app. It uses Firebase Authentification, Firebase Cloud Firestore, Firebase Storage.
 
+
 ## ✨ Features
 
 ✔️ User Authentification .
@@ -22,10 +23,10 @@ This is an cafe Application developed using Flutter (getx+Firebase). I have trie
 
 ✔️Logout
 
+
 ## ScreenShot
 
-<img width="1314" alt="Screen Shot 1444-05-27 at 11 44 19 PM" src="https://user-images.githubusercontent.com/116359019/209083455-fdc02c0a-90a8-486b-99be-8256ee3c5d7e.png">
-
+<img width="1314" alt="Screen Shot 1444-05-27 at 11 53 19 PM" src="https://user-images.githubusercontent.com/116359019/209084945-921c36cd-58bd-4b83-803e-68f3a92bdcfb.png">
 
 <img width="1314" alt="Screen Shot 1444-05-27 at 11 44 32 PM" src="https://user-images.githubusercontent.com/116359019/209083556-87a07fc2-0146-42bf-8742-b2880c843831.png">
 
