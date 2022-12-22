@@ -229,18 +229,18 @@ class ProdectController extends GetxController {
           .ref()
           .child("productImage")
           .child(productNameControlller.text + ".jpg");
-      final comicRef = prodectRefUser
+      final favRef = prodectRefUser
           .doc(authController.displayUserEmail.value)
           .collection("Favorite")
           .doc(prodect.productNumber);
-      prodect.productNumber = comicRef.id;
+      prodect.productNumber = favRef.id;
 
       final data = prodect.toJson(); // insert to fiserbase
-      print("----- ${comicRef.id}");
+      print("----- ${favRef.id}");
       print("------------- ${prodect.productNumber}");
 
-      comicRef.set(data).whenComplete(() {
-        if (comicRef.id == prodect.productNumber.toString()) {
+      favRef.set(data).whenComplete(() {
+        if (favRef.id == prodect.productNumber.toString()) {
           Get.snackbar("", "Added successfully..");
           // Get.toNamed(Routes.cartScreen);
         } else {
