@@ -135,7 +135,7 @@ class CartController extends GetxController {
     }
   }
 
-  late Prodect prodect;
+
 
   Future<void> deleteDataCart(String nameId) async {
     await prodectRefUser
@@ -145,24 +145,4 @@ class CartController extends GetxController {
         .delete();
   }
 
-  var productQuantity = ''.obs;
-
-  Future<void> updateProduct(quntity) async {
-    productQuantity.value;
-
-    var refUpdate = prodectRefUser
-        .doc(authController.displayUserEmail.value)
-        .collection("carts")
-        .doc(prodect.productNumber.toString());
-    refUpdate.update({
-      "quantity": productQuantity.value,
-    }).whenComplete(() {
-      print("update done");
-      Get.snackbar("", "Update successfully..");
-
-      update();
-      Get.offNamed(Routes.stockScreen);
-    });
-
-  }
 }
