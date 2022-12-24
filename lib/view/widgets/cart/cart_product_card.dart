@@ -107,8 +107,7 @@ class CartProductCard extends StatelessWidget {
                     onPressed: () {
 
                       controller.addProductToCart(productModels);
-                   controller.updateProduct(quantity);
-print (";ll");
+
                       print (quantity);
                     },
                     icon: Icon(
