@@ -52,27 +52,56 @@ class Prodect {
 
 
 
+CartModels cartFromJson(String str) => CartModels.fromJson(json.decode(str));
+
+String cartToJson(Prodect data) => json.encode(data.toJson());
 class CartModels {
 
   String? productNumber;
-  String? tableNumber;
-  String? nameOrder;
-  String? note ;
+  // String? tableNumber;
+ String? nameOrder;
+  // String? note ;
 
   int? quantity;
   double? price;
- String? category;
+ // String? category;
   String? imageUrl;
   CartModels({
     this.productNumber,
-    this.tableNumber,
+
     this.nameOrder,
-    this.note,
+
     this.quantity,
     this.price,
-    this.category,
+
     this.imageUrl,
 
-  });}
+  });
+
+
+  factory CartModels.fromJson(Map<String, dynamic> json) => CartModels(
+
+    productNumber: json["productNumber"],
+    nameOrder: json["productName"],
+
+    quantity: json["quantity"],
+    price: json["price"].toDouble(),
+
+    imageUrl: json["imageUrl"],
+  );
+
+  Map<String, dynamic> toJson() => {
+    "productNumber": productNumber,
+    "productName": nameOrder,
+
+    "quantity": quantity,
+    "price": price,
+
+    "imageUrl": imageUrl,
+  };
+
+
+
+}
 
 
