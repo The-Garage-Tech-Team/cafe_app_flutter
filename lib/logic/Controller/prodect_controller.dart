@@ -15,13 +15,13 @@ import 'package:image_picker/image_picker.dart';
 class ProdectController extends GetxController {
   final authController = Get.put(AuthController());
   final cartController = Get.put(CartController());
-  var isCatgeoryLoading = false.obs;
-  late TextEditingController productNumberController,
-      productNameControlller,
-      productCategoryController,
-      productQuantityController,
-      productPriceController,
-      productDescriptionController;
+
+  TextEditingController productNumberController = TextEditingController();
+  TextEditingController productNameControlller = TextEditingController();
+  TextEditingController productCategoryController = TextEditingController();
+  TextEditingController productQuantityController = TextEditingController();
+  TextEditingController productPriceController = TextEditingController();
+  TextEditingController productDescriptionController = TextEditingController();
 
   TextEditingController searchTextController = TextEditingController();
 
@@ -34,7 +34,7 @@ class ProdectController extends GetxController {
 
   List<Prodect> prodects = [];
   var searchList = <Prodect>[].obs;
-  var carts = <CartModels>[].obs;
+
   var prodectsFav = <Prodect>[];
   //update varible
   var productName = ''.obs;
@@ -54,12 +54,7 @@ class ProdectController extends GetxController {
   Future<void> onInit() async {
     // TODO: implement onInit
     super.onInit();
-    productNumberController = TextEditingController();
-    productNameControlller = TextEditingController();
-    productCategoryController = TextEditingController();
-    productQuantityController = TextEditingController();
-    productPriceController = TextEditingController();
-    productDescriptionController = TextEditingController();
+
     // TODO: implement initState
     searchTextController
       ..addListener(() {
@@ -268,5 +263,4 @@ class ProdectController extends GetxController {
         .delete();
     update();
   }
-
 }

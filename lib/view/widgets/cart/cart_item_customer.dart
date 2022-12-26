@@ -186,6 +186,7 @@ class CardItem extends StatelessWidget {
                       onPressed: () {
 
                         cartController.addProductToCart(productModels);
+
                       },
                       icon: const Icon(
                         Icons.shopping_cart,
