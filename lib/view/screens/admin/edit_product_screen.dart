@@ -10,7 +10,7 @@ import '../../../View/widgets/admin/Add_Product_Widgets/text_field_product.dart'
 import '../../widgets/textUtils.dart';
 
 class EditProductScreen extends StatelessWidget {
-  TextEditingController test = TextEditingController();
+
   String prodectId;
   String productName;
   String category;

@@ -95,5 +95,4 @@ class CartController extends GetxController {
     }
   }
 
-
 }
